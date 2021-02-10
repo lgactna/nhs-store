@@ -25,3 +25,6 @@ urlpatterns = [
     path('store/', include('store.urls')),
     path('', RedirectView.as_view(url='store/', permanent=True)), #redir root to store (for now)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG: 
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

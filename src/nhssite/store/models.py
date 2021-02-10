@@ -45,13 +45,16 @@ class ProductImage(models.Model):
     #for more expansive implementation
     name = models.CharField(max_length=100)
     product = models.ForeignKey("Product", on_delete=models.SET_NULL, blank=True, null=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='media/images')
 
     def __str__(self):
         """String for representing the Model object.
         
         Returns image name (product)."""
-        return f'{self.name} ({self.product.name})'
+        try:
+            return f'{self.name} ({self.product.name})'
+        except:
+            return f'{self.name} (no product)'
 
 class Material(models.Model):
     """Model representing a 3D print material and color.
