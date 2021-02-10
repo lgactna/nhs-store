@@ -50,7 +50,7 @@ class ProductImage(models.Model):
     def __str__(self):
         """String for representing the Model object.
         
-        Returns image name (product)."""
+        Returns {image name} ({product})."""
         try:
             return f'{self.name} ({self.product.name})'
         except:
@@ -74,7 +74,7 @@ class Material(models.Model):
     def __str__(self):
         """String for representing the Model object.
         
-        Returns color_name (material_type)."""
+        Returns {color_name} ({material_type})."""
         return f'{self.color_name} ({self.material_type})'
 
 class ProductInstance(models.Model):
@@ -115,4 +115,4 @@ class Order(models.Model):
         """String for representing the Model object.
         
         Returns #{id} - {last_name}, {first_name} ({student_id})"""
-        return f'#{id} - {last_name}, {first_name} ({student_id})'
+        return f'#{self.id} - {self.last_name}, {self.first_name} ({self.student_id})'
