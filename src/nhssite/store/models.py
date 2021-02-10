@@ -24,7 +24,7 @@ class Product(models.Model):
     )
     description = models.TextField()
     materials = models.ManyToManyField("Material", related_name="materials")
-    available = models.BooleanField()
+    available = models.BooleanField(default=True)
     
     def get_absolute_url(self):
         """Returns the url for this player."""
@@ -68,7 +68,7 @@ class Material(models.Model):
     material_type = models.CharField(
         max_length=20,
         help_text="Actual 3D print material (ABS, PLA, resin, etc.)")
-    available = models.BooleanField()
+    available = models.BooleanField(default=True)
     #consider using unit prices in future
 
     def __str__(self):
@@ -101,8 +101,13 @@ class Order(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     student_id = models.CharField(max_length=10)
-    email = models.EmailField()
+    email = models.EmailField(blank=True, null=True)
+    phone = models.CharField(max_length=15) #you will provide number or perish
+    extra_notes = models.TextField(default="", blank=True, null=True)
+    fulfilled = models.BooleanField(default=False)
 
+    #need to write save funct for both product instance and order to generate this
+    #should be read-only field to user (discounts and the like should be noted in extra_notes)
     grand_total = models.DecimalField(max_digits=6, decimal_places=2)
 
     created_at = models.DateTimeField(auto_now_add=True)
