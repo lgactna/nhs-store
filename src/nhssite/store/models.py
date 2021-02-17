@@ -25,6 +25,7 @@ class Product(models.Model):
     description = models.TextField()
     materials = models.ManyToManyField("Material", related_name="materials")
     available = models.BooleanField(default=True)
+    featured = models.BooleanField(default=False)
     
     def get_absolute_url(self):
         """Returns the url for this player."""
@@ -74,7 +75,7 @@ class Material(models.Model):
     def __str__(self):
         """String for representing the Model object.
         
-        Returns {color_name} ({material_type})."""
+        Returns {color_name} {material_type}."""
         return f'{self.color_name} ({self.material_type})'
 
 class ProductInstance(models.Model):
@@ -90,7 +91,7 @@ class ProductInstance(models.Model):
         """String for representing the Model object.
         
         Returns {quantity}x {product} - {material}"""
-        return f'{self.quantity}x {self.product} - ({self.material})'
+        return f'{self.quantity}x {self.product} - {self.material}'
 
 class Order(models.Model):
     """Model representing a completed order.
