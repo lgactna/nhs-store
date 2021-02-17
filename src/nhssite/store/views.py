@@ -23,5 +23,6 @@ def index(request):
 class ProductListView(generic.ListView):
     model = Product
     context_object_name = "products"
+    template_name = "store/catalog.html"
 class ProductDetailView(generic.DetailView):
     model = Product

@@ -1,0 +1,43 @@
+{% extends "base_generic.html" %}
+
+{% block main %}
+    <section class="portfolio-block projects-cards" style="padding-top: 35px;">
+        <div class="container">
+            <div class="heading" style="margin-bottom: 30px;">
+                <h2>Catalog</h2>
+                <p>please buy something</p>
+            </div>
+            <div class="row photos">
+    {% for product in products %}
+    <div class="col-md-6 col-lg-4 d-flex flex-column" style="border-radius: 14px;border: 1px solid rgba(33,37,41,0.34);padding: 15px;padding-bottom: 0px;">
+    <div class="card border-0" style="margin-bottom: 0;"><a href="{{product.images.all.0.image.url}}" data-lightbox="photos"><img class="card-img-top scale-on-hover" src="{{product.images.all.0.image.url}}" alt="{{product.images.all.0.image}}" /></a>
+        <div class="card-body">
+            <h6 style="text-align: left;">{{product.name}}</h6>
+            <div class="d-flex" style="  margin-left: -5px;
+    margin-bottom: 5px;
+    font-size: 0.75rem;
+    ">
+                {% for material in product.materials.all %}
+                <i class="fa fa-circle" style="color: {{material.hex}}; margin-right:5px; font-size:20px" data-toggle="tooltip" data-placement="top" title="{{material}}"></i>
+                {% endfor %}
+            </div>
+            <p class="text-muted card-text">{{product.description}}</p>
+        </div>
+    </div>
+    <div class="text-right d-flex justify-content-end" style="height: 40px;/*vertical-align: bottom;*/margin-top: auto;margin-bottom: 20px;">
+        <p class="text-muted" style="margin-right: auto;margin-top: 7px;">${{product.price}} each</p><a class="btn btn-primary" role="button" style="color: white;" href="{{product.get_absolute_url}}">Buy<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a>
+    </div>
+    </div>
+    {% endfor %}</div>
+        </div>
+    </section>
+    <!--Tooltips must be manually enabled
+    https://stackoverflow.com/questions/9446318/bootstrap-tooltips-not-working
+    JQuery is double-loaded as a result-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[data-toggle='tooltip']").tooltip();
+        });
+    </script>
+{% endblock %}
