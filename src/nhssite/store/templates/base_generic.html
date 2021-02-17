@@ -33,7 +33,7 @@
                     <li class="nav-item"><a class="nav-link active" href="{% url 'index' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'catalog' %}">Catalog</a></li>
                     <li class="nav-item" style="border-right-width: 1px;"><a class="nav-link" href="custom-orders.html">Custom Ordering</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Cart (0)<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Cart ({{ request.session.cart|length }})<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
                 </ul>
             </div>
         </div>

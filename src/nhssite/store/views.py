@@ -17,6 +17,13 @@ def index(request):
         for pimage in product.images.all():
             print(pimage.image.url)
 
+    try:
+        request.session['cart'][str(len(request.session['cart']))] = "b"
+        request.session.modified = True
+    except:
+        cart = request.session.get('cart', {"dog":"bat"})
+        request.session['cart'] = cart
+
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
 
