@@ -29,7 +29,7 @@ class Product(models.Model):
     
     def get_absolute_url(self):
         """Returns the url for this player."""
-        return reverse('player-detail', args=[str(self.id)])
+        return reverse('product-detail', args=[str(self.id)])
 
     def __str__(self):
         """String for representing the Model object.
@@ -45,7 +45,7 @@ class ProductImage(models.Model):
     #see https://medium.com/ibisdev/upload-multiple-images-to-a-model-with-django-fd00d8551a1c
     #for more expansive implementation
     name = models.CharField(max_length=100)
-    product = models.ForeignKey("Product", on_delete=models.SET_NULL, blank=True, null=True)
+    product = models.ForeignKey("Product", on_delete=models.SET_NULL, blank=True, null=True, related_name="images")
     image = models.ImageField(upload_to='media/images')
 
     def __str__(self):
