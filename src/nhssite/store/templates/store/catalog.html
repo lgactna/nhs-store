@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block main %}
-    <section class="portfolio-block projects-cards" style="padding-top: 35px;">
+    <section class="portfolio-block" style="padding-top: 35px;">
         <div class="container">
             <div class="heading" style="margin-bottom: 30px;">
                 <h2>Catalog</h2>
@@ -12,9 +12,9 @@
     <div class="col-md-6 col-lg-4 d-flex flex-column" style="border-radius: 14px;border: 1px solid rgba(33,37,41,0.34);padding: 15px;padding-bottom: 0px;">
     <div class="card border-0" style="margin-bottom: 0;"><a href="{{product.images.all.0.image.url}}" data-lightbox="photos"><img class="card-img-top scale-on-hover" src="{{product.images.all.0.image.url}}" alt="{{product.images.all.0.image}}" /></a>
         <div class="card-body">
-            <h6 style="text-align: left;">{{product.name}}</h6>
+            <a href="{{product.get_absolute_url}}" style="font-size:20px;">{{product.name}}</a>
             <div class="d-flex" style="  margin-left: -5px;
-    margin-bottom: 5px;
+    margin: 5px 0;
     font-size: 0.75rem;
     ">
                 {% for material in product.materials.all %}
