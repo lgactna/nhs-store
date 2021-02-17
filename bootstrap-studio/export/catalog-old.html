@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Modelling - lgactna</title>
+    <meta name="twitter:card" content="summary">
+    <meta property="og:description" content="Lloyd Gonzales">
+    <meta property="og:image" content="assets/img/github-profile.png">
+    <meta property="og:type" content="website">
+    <meta name="description" content="Portfolio of Lloyd Gonzales.">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/custom-fixes.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
+        <div class="container"><a class="navbar-brand logo" href="index.html">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+                    <li class="nav-item" style="border-right-width: 1px;"><a class="nav-link" href="custom-orders.html">Custom Ordering</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Cart (0)<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page projects-page">
+        <section class="portfolio-block projects-cards" style="padding-top: 35px;">
+            <div class="container">
+                <div class="heading" style="margin-bottom: 30px;">
+                    <h2>Catalog</h2>
+                    <p>please buy something</p>
+                </div>
+                <div class="row photos">
+                    <div class="col-md-6 col-lg-4 d-flex flex-column" style="border-radius: 14px;border: 1px solid rgba(33,37,41,0.34);padding: 15px;padding-bottom: 0px;">
+                        <div class="card border-0" style="margin-bottom: 0;"><a href="assets/img/solidworks-imgs/m7.png" data-lightbox="photos"><img class="card-img-top scale-on-hover" src="assets/img/solidworks-imgs/m7.png" alt="Card Image"></a>
+                            <div class="card-body">
+                                <h6 style="text-align: left;">{{product.name}}</h6><div class="d-flex" style="margin-left: -5px;margin-bottom: 5px; font-size: 0.75rem">
+    {% for color in product.colors %}
+    <i class="fa fa-circle" style="margin-left: 5px;margin-right: 5px;color: {{material.hex}}" data-toggle="tooltip" title="{{material}}"></i>
+    {% endfor %}
+</div>
+                                <p class="text-muted card-text">{{product.description}}</p>
+                            </div>
+                        </div>
+                        <div class="text-right d-flex justify-content-end" style="height: 40px;/*vertical-align: bottom;*/margin-top: auto;margin-bottom: 20px;">
+                            <p class="text-muted" style="margin-right: auto;margin-top: 7px;">${{product.price}} each</p><a class="btn btn-primary" role="button" style="color: white;" href="https://drive.google.com/drive/folders/1bZjaeCo77jNhZXN1Tn4yOn2DmcR2E85h?usp=sharing" target="_blank">Buy<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <p><strong>contact us!</strong></p>
+        </div>
+        <p>insert emma's/miller's info here</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="assets/js/Simple-Slider.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

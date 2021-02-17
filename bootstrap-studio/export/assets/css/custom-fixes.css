@@ -1,0 +1,112 @@
+.indiv-header {
+  font-size: 1.3rem;
+}
+
+@media (min-width: 768px) {
+  .indiv-header {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 767px) {
+  #spreadsheeting-box {
+    background: rgb(134,63,63)!important;
+  }
+}
+
+@media (max-width: 767px) {
+  #other-projects-box {
+    background: rgb(32,32,32)!important;
+  }
+}
+
+@media (max-width: 991px) {
+  #telemetry-box {
+    background: rgb(229,228,229)!important;
+  }
+}
+
+@media (max-width: 991px) {
+  #davis-creek-box {
+    background: rgb(32,64,21)!important;
+  }
+}
+
+@media (max-width: 991px) {
+  #staffing-box {
+    background: rgb(128,86,132)!important;
+  }
+}
+
+@media (max-width: 991px) {
+  #full-list-box {
+    background: rgb(63,70,134)!important;
+  }
+}
+
+.invisible-anchor {
+  margin-top: -150px;
+  padding-top: 150px;
+}
+
+#achievements-sect a:hover {
+  color: #0075c1;
+  text-decoration: underline;
+}
+
+#volunteering-container a:hover {
+  /*color: #0075c1;*/
+  /*text-decoration: underline;*/
+}
+
+#achievements-sect a {
+  color: #0ea0ff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+#volunteering-container a {
+  /*color: #0ea0ff;*/
+  /*text-decoration: none;*/
+  /*background-color: transparent;*/
+}
+
+.reduced-padding td {
+  padding: .25rem .75rem;
+  vertical-align: middle;
+}
+
+.portfolio-block.projects-cards .card-body p {
+  text-align: left;
+}
+
+.portfolio-block.projects-cards .card-body td p {
+  margin: 0;
+}
+
+.gold {
+  background: gold;
+}
+
+.silver {
+  background: silver;
+}
+
+.bronze {
+  background: #cd7f32;
+}
+
+.fourth {
+  background: #bee5f7;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  background: #a09393;
+}
+
+.modified-header-imgs.card-img-top {
+  overflow: hidden;
+  display: block;
+  max-height: 264px;
+}
+

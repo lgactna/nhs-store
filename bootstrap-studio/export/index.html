@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - lgactna</title>
+    <meta name="twitter:card" content="summary">
+    <meta property="og:description" content="Lloyd Gonzales">
+    <meta property="og:image" content="assets/img/github-profile.png">
+    <meta property="og:type" content="website">
+    <meta name="description" content="Portfolio of Lloyd Gonzales.">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/custom-fixes.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
+        <div class="container"><a class="navbar-brand logo" href="index.html">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+                    <li class="nav-item" style="border-right-width: 1px;"><a class="nav-link" href="custom-orders.html">Custom Ordering</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Cart (0)<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page lanidng-page" style="padding: 0;">
+        <section class="portfolio-block block-intro" style="/*background: linear-gradient(120deg,#4052f4,#0ea0ff);*//*padding: 0;*/padding-bottom: 0;">
+            <div class="container">
+                <div class="jumbotron text-left" id="index-box" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
+                    <h1 class="text-left" style="color: rgb(255,255,255);">buy stuff and support your school</h1>
+                    <p class="text-left" style="color: rgb(255,255,255);margin-bottom: 0;">high quality prints at an arbitrary price<br>(this should be a good print on a good background)</p>
+                </div>
+            </div>
+        </section>
+        <section style="margin-bottom: 50px;">
+            <div class="container">
+                <div class="clean-related-items">
+                    <h2>Featured Products</h2>
+                    <div class="items">
+                        <div class="row justify-content-center">{% for product in featured_products %}
+    <div class="col-sm-6 col-lg-4">
+        <div class="clean-related-item">
+            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="{{product.images.0.url}}" /></a></div>
+            <div class="related-name"><a href="#">{{product.name}}</a>
+                <h4>${{product.price}}}</h4>
+            </div>
+        </div>
+    </div>
+{% endfor %}</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section style="background: #000000;color: white;">
+            <div class="container" style="padding: 15px;">
+                <h2 style="color: rgb(227,227,227);">why buy?</h2><span>lol i need to hire someone for good pictures of the prints like outdoory and stuff<br><br>like what you see on those artisan mech kb websites<br></span>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-12 col-md-3 col-lg-3 col-xl-3"><img src="assets/img/solidworks-imgs/skt%20t1.png" style="width: 100%;border-radius: 10px;"></div>
+                    <div class="col-12 col-md-9 col-lg-9 col-xl-9 d-flex flex-column justify-content-center">
+                        <h4>support your school</h4>
+                        <p>all purchases go towards the AACT chapter of the National Honor Society and will help fund both school and community activities!</p>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-12 col-md-3 col-lg-3 col-xl-3"><img src="assets/img/solidworks-imgs/skt%20t1.png" style="width: 100%;border-radius: 10px;"></div>
+                    <div class="col-12 col-md-9 col-lg-9 col-xl-9 d-flex flex-column justify-content-center">
+                        <h4>pay less</h4>
+                        <p>why pay for shipping and handling when you can go to miller's room and get the things you bought yourself?</p>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-12 col-md-3 col-lg-3 col-xl-3"><img src="assets/img/solidworks-imgs/skt%20t1.png" style="width: 100%;border-radius: 10px;"></div>
+                    <div class="col-12 col-md-9 col-lg-9 col-xl-9 d-flex flex-column justify-content-center">
+                        <h4>student-run</h4>
+                        <p>quality, guaranteed. take comfort in knowing that a fellow student makes sure your experience is great from start to finish!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section style="/*background: #000000;*//*color: white;*/">
+            <div class="container" style="padding: 15px;">
+                <h2>some number of easy steps!</h2><span>order, then confirmation, then bookkeeper, then pick up???</span>
+            </div>
+        </section>
+        <section style="background: #000000;color: white;">
+            <div class="container d-flex flex-column align-items-center" style="padding: 15px;">
+                <h2 style="color: rgb(227,227,227);">what are you waiting for?</h2><span>maybe a picture of a wood desk, set to low transparency here?<br></span><button class="btn btn-primary" type="button">Catalog<i class="fa fa-angle-right" style="margin-left: 5px;"></i></button>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <p><strong>contact us!</strong></p>
+        </div>
+        <p>insert emma's/miller's info here</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="assets/js/Simple-Slider.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

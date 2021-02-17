@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Modelling - lgactna</title>
+    <meta name="twitter:card" content="summary">
+    <meta property="og:description" content="Lloyd Gonzales">
+    <meta property="og:image" content="assets/img/github-profile.png">
+    <meta property="og:type" content="website">
+    <meta name="description" content="Portfolio of Lloyd Gonzales.">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/custom-fixes.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
+        <div class="container"><a class="navbar-brand logo" href="index.html">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+                    <li class="nav-item" style="border-right-width: 1px;"><a class="nav-link" href="custom-orders.html">Custom Ordering</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Cart (0)<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page projects-page">
+        <section class="clean-block clean-product dark" style="margin-top: 40px;">
+            <div class="container">
+                <div class="block-content">
+                    <div class="product-info">
+                        <div class="row">
+                            <div class="col-12 col-md-4 col-lg-4 col-xl-4"><div data-ride="carousel" class="carousel slide" id="carousel-1">
+    <div class="carousel-inner">
+        {% for image in product.images %}
+        <div class="carousel-item"><a href="{{image.url}}" data-lightbox="photos"><img class="card-img-top scale-on-hover" src="{{image.url}}" alt="{{image.name}}" /></a></div>
+        {% endfor %}
+    </div>
+    <div><a href="#carousel-1" role="button" data-slide="prev" class="carousel-control-prev"><span class="carousel-control-prev-icon"></span><span class="sr-only">Previous</span></a><a href="#carousel-1" role="button" data-slide="next" class="carousel-control-next"><span class="carousel-control-next-icon"></span><span class="sr-only">Next</span></a></div>
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-1" data-slide-to="0"></li>
+    </ol>
+</div></div>
+                            <div class="col-12 col-md-8 col-lg-8 col-xl-8">
+                                <div class="info">
+                                    <h3>{{product.name}}</h3>
+                                    <div class="price">
+                                        <h3>{{product.price}}</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><button class="btn btn-primary" type="button"><i class="icon-basket"></i>Add to Cart</button></div>
+                                        <div class="col d-flex justify-content-center align-items-center"><span>Quantity</span><input type="number" value="1" style="width: 60px;margin-left: 15px;"></div>
+                                        <div class="col d-flex justify-content-center align-items-center"><span>Color</span><select style="width: 160px;margin-left: 15px;">
+    <optgroup label="Colors/Materials">
+        {% for material in product.materials%}
+        <option value="{{material.id}}" selected>{{material}}</option>
+    </optgroup>
+</select>
+</div>
+                                    </div>
+                                    <div class="summary">
+                                        <p>{{product.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <p><strong>contact us!</strong></p>
+        </div>
+        <p>insert emma's/miller's info here</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="assets/js/Simple-Slider.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>
