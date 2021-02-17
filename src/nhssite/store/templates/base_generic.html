@@ -31,14 +31,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link active" href="{% url 'index' %}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'catalog' %}">Catalog</a></li>
                     <li class="nav-item" style="border-right-width: 1px;"><a class="nav-link" href="custom-orders.html">Custom Ordering</a></li>
                     <li class="nav-item"><a class="nav-link active" href="#">Cart (0)<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <main class="page lanidng-page" style="padding: 0;">{% block main %}{% endblock %}</main>
+    <main class="page landing-page">{% block main %}{% endblock %}</main>
     <footer class="page-footer">
         <div class="container">
             <p><strong>contact us!</strong></p>
