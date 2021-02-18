@@ -105,6 +105,7 @@ class Order(models.Model):
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=15) #you will provide number or perish
     extra_notes = models.TextField(default="", blank=True, null=True)
+    paid = models.BooleanField(default=False)
     fulfilled = models.BooleanField(default=False)
 
     is_custom = models.BooleanField(default=False)
