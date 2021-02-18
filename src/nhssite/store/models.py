@@ -107,6 +107,11 @@ class Order(models.Model):
     extra_notes = models.TextField(default="", blank=True, null=True)
     fulfilled = models.BooleanField(default=False)
 
+    is_custom = models.BooleanField(default=False)
+    extra_notes = models.TextField(default="", blank=True, null=True)
+    custom_material = models.ForeignKey("Material", on_delete=models.SET_NULL, blank=True, null=True)
+    custom_quantity = models.IntegerField(blank=True, null=True)
+
     #need to write save funct for both product instance and order to generate this
     #should be read-only field to user (discounts and the like should be noted in extra_notes)
     grand_total = models.DecimalField(max_digits=6, decimal_places=2)
