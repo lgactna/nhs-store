@@ -44,39 +44,82 @@
         </div>
     </nav>
     <main class="page projects-page">
-        <section class="portfolio-block projects-cards" style="padding-top: 35px;">
+        <section class="portfolio-block" style="padding-top: 35px;">
             <div class="container">
-                <div class="heading" style="margin-bottom: 30px;">
-                    <h2>Catalog</h2>
-                    <p>please buy something</p>
+                <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
+                    <h2>CONFIRMATION</h2>
+                    <p>Your order has been received!</p>
+                    <p>Please print this page out for your records.</p>
                 </div>
-                <div class="row photos">
-                    <div class="col-md-6 col-lg-4 d-flex flex-column" style="border-radius: 14px;border: 1px solid rgba(33,37,41,0.34);padding: 15px;padding-bottom: 0px;">
-                        <div class="card border-0" style="margin-bottom: 0;"><a href="assets/img/solidworks-imgs/m7.png" data-lightbox="photos"><img class="card-img-top scale-on-hover" src="assets/img/solidworks-imgs/m7.png" alt="Card Image"></a>
-                            <div class="card-body">
-                                <h6 style="text-align: left;">{{product.name}}</h6><div class="d-flex" style="margin-left: -5px;margin-bottom: 5px; font-size: 0.75rem">
-    {% for color in product.colors %}
-    <i class="fa fa-circle" style="margin-left: 5px;margin-right: 5px;color: {{material.hex}}" data-toggle="tooltip" title="{{material}}"></i>
-    {% endfor %}
-</div>
-                                <p class="text-muted card-text">{{product.description}}</p><i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="text-right d-flex justify-content-end" style="height: 40px;/*vertical-align: bottom;*/margin-top: auto;margin-bottom: 20px;">
-                            <p class="text-muted" style="margin-right: auto;margin-top: 7px;">${{product.price}} each</p><a class="btn btn-primary" role="button" style="color: white;" href="https://drive.google.com/drive/folders/1bZjaeCo77jNhZXN1Tn4yOn2DmcR2E85h?usp=sharing" target="_blank">Buy<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a>
-                        </div>
+            </div>
+            <div class="container">
+                <div>
+                    <h4>Details</h4>
+                    <div class="table-responsive" style="width: 600px;">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 200px;"><strong>Order Number</strong></td>
+                                    <td>{{order number}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>First Name</strong></td>
+                                    <td>{{first name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Last Name</strong></td>
+                                    <td>{{last name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Student ID</strong></td>
+                                    <td>{{id}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email</strong></td>
+                                    <td>{{email}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone</strong></td>
+                                    <td>{{phone}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h4>Special Instructions</h4>
+                    <p>{{special instructions}}</p>
+                </div>
+                <div>
+                    <h4>Order Summary</h4>
+                    <div class="table-responsive" overflow="auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 250px;">Item</th>
+                                    <th style="width: 185px;">Material</th>
+                                    <th style="width: 120px;">Quantity</th>
+                                    <th style="width: 84px;">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{item name}}</td>
+                                    <td>{{material}}</td>
+                                    <td>{{quantity}}</td>
+                                    <td>${{price}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;"><br></td>
+                                    <td class="d-flex justify-content-end"><strong>Grand Total</strong></td>
+                                    <td><strong>{{gt_quantity]}</strong></td><td><strong>${{tprice}}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        </section><!--Tooltips must be manually enabled
-https://stackoverflow.com/questions/9446318/bootstrap-tooltips-not-working
-JQuery is double-loaded as a result-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $("[data-toggle='tooltip']").tooltip();
-    });
-</script>
+        </section>
     </main>
     <footer class="page-footer">
         <div class="container">

@@ -44,39 +44,59 @@
         </div>
     </nav>
     <main class="page projects-page">
-        <section class="portfolio-block projects-cards" style="padding-top: 35px;">
+        <section class="portfolio-block" style="padding-top: 35px;">
             <div class="container">
-                <div class="heading" style="margin-bottom: 30px;">
-                    <h2>Catalog</h2>
-                    <p>please buy something</p>
-                </div>
-                <div class="row photos">
-                    <div class="col-md-6 col-lg-4 d-flex flex-column" style="border-radius: 14px;border: 1px solid rgba(33,37,41,0.34);padding: 15px;padding-bottom: 0px;">
-                        <div class="card border-0" style="margin-bottom: 0;"><a href="assets/img/solidworks-imgs/m7.png" data-lightbox="photos"><img class="card-img-top scale-on-hover" src="assets/img/solidworks-imgs/m7.png" alt="Card Image"></a>
-                            <div class="card-body">
-                                <h6 style="text-align: left;">{{product.name}}</h6><div class="d-flex" style="margin-left: -5px;margin-bottom: 5px; font-size: 0.75rem">
-    {% for color in product.colors %}
-    <i class="fa fa-circle" style="margin-left: 5px;margin-right: 5px;color: {{material.hex}}" data-toggle="tooltip" title="{{material}}"></i>
-    {% endfor %}
-</div>
-                                <p class="text-muted card-text">{{product.description}}</p><i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="text-right d-flex justify-content-end" style="height: 40px;/*vertical-align: bottom;*/margin-top: auto;margin-bottom: 20px;">
-                            <p class="text-muted" style="margin-right: auto;margin-top: 7px;">${{product.price}} each</p><a class="btn btn-primary" role="button" style="color: white;" href="https://drive.google.com/drive/folders/1bZjaeCo77jNhZXN1Tn4yOn2DmcR2E85h?usp=sharing" target="_blank">Buy<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a>
-                        </div>
-                    </div>
+                <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
+                    <h2>CHECKOUT</h2><a class="btn btn-warning" role="button">Return to Cart</a>
                 </div>
             </div>
-        </section><!--Tooltips must be manually enabled
-https://stackoverflow.com/questions/9446318/bootstrap-tooltips-not-working
-JQuery is double-loaded as a result-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $("[data-toggle='tooltip']").tooltip();
-    });
-</script>
+            <div class="container">
+                <div>
+                    <h4>Order Summary</h4>
+                    <div class="table-responsive" overflow="auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 250px;">Item</th>
+                                    <th style="width: 185px;">Material</th>
+                                    <th style="width: 120px;">Quantity</th>
+                                    <th style="width: 84px;">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Big Octopus</td>
+                                    <td>Purple (Hatchbox PLA)</td>
+                                    <td>1</td>
+                                    <td>$99.99</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;"><br></td>
+                                    <td class="d-flex justify-content-end"><strong>Grand Total</strong></td>
+                                    <td><strong>25</strong></td>
+                                    <td><strong>$99.99</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <form method="post">
+                    <h3>Details</h3>
+                    <div class="form-group"><input class="form-control" type="text" name="ShippingFirstName" placeholder="First Name" required=""></div>
+                    <div class="form-group"><input class="form-control" type="text" name="ShippingLastName" placeholder="Last Name" required=""></div>
+                    <div class="form-group"><input class="form-control" type="text" name="StudentID" placeholder="Student ID" required="" pattern="^[0-9]+$"></div>
+                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email (don't use your student email)" required=""></div>
+                    <div class="form-group"><input class="form-control" type="tel" name="phone" placeholder="Phone" required=""></div>
+                    <p>If you have anything else you think we should know, please say so here.</p>
+                    <div class="form-group"><textarea class="form-control" name="SpecialInstructions" placeholder="Special Instructions" rows="5"></textarea></div>
+                    <p>After you click "Place Order," you will be redirected to your order confirmation, which contains an order number. <strong>Make sure you keep this order number in a safe place.</strong>&nbsp;</p>
+                    <p>You will give your order number to the bookkeeper when you pay the amount listed above.&nbsp; After the bookkeeper confirms your payment, we'll start preparing your order and will let you know when it's ready. Depending on availability, this may be a very short time, or you might have to wait a few days.</p>
+                    <p>If you need to contact us, please include as much information about yourself as you can, especially your order number.</p>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="agreebox" required=""><label class="form-check-label" for="formCheck-1">I have read and understand the terms above.</label></div>
+                    <div class="form-group"><button class="btn btn-primary disabled" type="submit">Place Order</button></div>
+                </form>
+            </div>
+        </section>
     </main>
     <footer class="page-footer">
         <div class="container">

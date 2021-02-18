@@ -32,57 +32,30 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
-        <div class="container"><a class="navbar-brand logo" href="{% url 'index' %}">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="index.html">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'catalog' %}">Catalog</a></li>
-                    <li class="nav-item" style="border-right-width: 1px;"><a class="nav-link" href="custom-orders.html">Custom Ordering</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Cart (0)<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Order Listing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Order Lookup</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <main class="page projects-page">
-        <section class="portfolio-block projects-cards" style="padding-top: 35px;">
+        <section class="portfolio-block" style="padding-top: 35px;">
             <div class="container">
-                <div class="heading" style="margin-bottom: 30px;">
-                    <h2>Catalog</h2>
-                    <p>please buy something</p>
-                </div>
-                <div class="row photos">
-                    <div class="col-md-6 col-lg-4 d-flex flex-column" style="border-radius: 14px;border: 1px solid rgba(33,37,41,0.34);padding: 15px;padding-bottom: 0px;">
-                        <div class="card border-0" style="margin-bottom: 0;"><a href="assets/img/solidworks-imgs/m7.png" data-lightbox="photos"><img class="card-img-top scale-on-hover" src="assets/img/solidworks-imgs/m7.png" alt="Card Image"></a>
-                            <div class="card-body">
-                                <h6 style="text-align: left;">{{product.name}}</h6><div class="d-flex" style="margin-left: -5px;margin-bottom: 5px; font-size: 0.75rem">
-    {% for color in product.colors %}
-    <i class="fa fa-circle" style="margin-left: 5px;margin-right: 5px;color: {{material.hex}}" data-toggle="tooltip" title="{{material}}"></i>
-    {% endfor %}
-</div>
-                                <p class="text-muted card-text">{{product.description}}</p><i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="text-right d-flex justify-content-end" style="height: 40px;/*vertical-align: bottom;*/margin-top: auto;margin-bottom: 20px;">
-                            <p class="text-muted" style="margin-right: auto;margin-top: 7px;">${{product.price}} each</p><a class="btn btn-primary" role="button" style="color: white;" href="https://drive.google.com/drive/folders/1bZjaeCo77jNhZXN1Tn4yOn2DmcR2E85h?usp=sharing" target="_blank">Buy<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a>
-                        </div>
-                    </div>
+                <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
+                    <h2>order #{{order number}}</h2>
                 </div>
             </div>
-        </section><!--Tooltips must be manually enabled
-https://stackoverflow.com/questions/9446318/bootstrap-tooltips-not-working
-JQuery is double-loaded as a result-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $("[data-toggle='tooltip']").tooltip();
-    });
-</script>
+        </section>
     </main>
     <footer class="page-footer">
         <div class="container">
             <p><strong>contact us!</strong></p>
         </div>
         <p>insert emma's/miller's info here</p>
+        <p>insert order view login here (keep admin link secret)</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>

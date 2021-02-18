@@ -34,30 +34,51 @@
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
         <div class="container"><a class="navbar-brand logo" href="index.html">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="nav navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
                     <li class="nav-item" style="border-right-width: 1px;"><a class="nav-link" href="custom-orders.html">Custom Ordering</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Cart (0)<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Cart ({{request.session.cart|length}})<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <main class="page projects-page">
-        <section class="portfolio-block projects-cards" style="padding-top: 35px;">
+        <section class="portfolio-block" style="padding-top: 35px;">
             <div class="container">
-                <div class="heading" style="margin-bottom: 30px;">
+                <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
                     <h2>cart</h2>
-                    <p>You have n items in your cart for a projected total of $43.24.</p>
+                    <p>You have {{item count}} items in your cart for a projected total of ${{total}}.</p>
+                    <div class="d-flex" style="max-width: 420px;width: 100%;"><a class="btn btn-success" role="button">Continue Shopping</a><a class="btn btn-warning" role="button" style="margin-left: auto;">Checkout</a></div>
                 </div>
             </div>
             <div class="container">
-                <div class="row" style="background: rgba(0,0,0,0.05);border-radius: 8px;padding: 15px;">
-                    <div class="col-12 col-md-3 col-lg-3 col-xl-3 d-flex justify-content-center align-items-center"><img></div>
+                <h3 class="text-center">Item added!/No items in cart!</h3>
+                <div class="row" style="background: rgba(0,0,0,0.05);border-radius: 8px;padding: 15px;margin-bottom: 15px;">
+                    <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 d-flex justify-content-center align-items-center"><img style="width: 100%;" src="assets/img/solidworks-imgs/m7.png"></div>
                     <div class="col d-flex flex-column">
                         <div class="d-flex">
-                            <h3>item name</h3><button class="btn btn-danger" type="button" style="max-width: 110px;margin-left: auto;">Remove</button>
-                        </div><span>$13.24</span><span>Color: Purple</span><span>Quantity: 1</span>
+                            <h3><a href="#">{{product name}}</a></h3><button class="btn btn-danger" type="button" style="max-width: 110px;margin-left: auto;max-height: 41.6px;">Remove</button>
+                        </div><span>${{total price}}</span><span>Material: {{material}}</span><span>Quantity: {{quantity}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <h3 class="text-center">The rest of your cart:</h3>
+                <div class="row" style="background: rgba(0,0,0,0.05);border-radius: 8px;padding: 15px;margin-bottom: 15px;">
+                    <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 d-flex justify-content-center align-items-center"><img style="width: 100%;" src="assets/img/solidworks-imgs/m7.png"></div>
+                    <div class="col d-flex flex-column">
+                        <div class="d-flex">
+                            <h3><a href="#">{{product name}}</a></h3><button class="btn btn-danger" type="button" style="max-width: 110px;margin-left: auto;max-height: 41.6px;">Remove</button>
+                        </div><span>${{total price}}</span><span>Material: {{material}}</span><span>Quantity: {{quantity}}</span>
+                    </div>
+                </div>
+                <div class="row" style="background: rgba(0,0,0,0.05);border-radius: 8px;padding: 15px;margin-bottom: 15px;">
+                    <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 d-flex justify-content-center align-items-center"><img style="width: 100%;" src="assets/img/solidworks-imgs/m7.png"></div>
+                    <div class="col d-flex flex-column">
+                        <div class="d-flex">
+                            <h3><a href="#">{{product name}}</a></h3><button class="btn btn-danger" type="button" style="max-width: 110px;margin-left: auto;max-height: 41.6px;">Remove</button>
+                        </div><span>${{total price}}</span><span>Material: {{material}}</span><span>Quantity: {{quantity}}</span>
                     </div>
                 </div>
             </div>
@@ -71,7 +92,8 @@
         <p>insert order view login here (keep admin link secret)</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/cart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>

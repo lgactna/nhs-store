@@ -32,19 +32,19 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
-        <div class="container"><a class="navbar-brand logo" href="index.html">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="{% url 'index' %}">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'catalog' %}">Catalog</a></li>
                     <li class="nav-item" style="border-right-width: 1px;"><a class="nav-link" href="custom-orders.html">Custom Ordering</a></li>
                     <li class="nav-item"><a class="nav-link active" href="#">Cart (0)<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <main class="page lanidng-page" style="padding: 0;">
-        <section class="portfolio-block block-intro" style="/*background: linear-gradient(120deg,#4052f4,#0ea0ff);*//*padding: 0;*/padding-bottom: 0;">
+    <main class="page landing-page">
+        <section class="portfolio-block block-intro" style="/*background: linear-gradient(120deg,#4052f4,#0ea0ff);*/padding-top: 25px;padding-bottom: 0;">
             <div class="container">
                 <div class="jumbotron text-left" id="index-box" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
                     <h1 class="text-left" style="color: rgb(255,255,255);">buy stuff and support your school</h1>
@@ -60,9 +60,9 @@
                         <div class="row justify-content-center">{% for product in featured_products %}
     <div class="col-sm-6 col-lg-4">
         <div class="clean-related-item">
-            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="{{product.images.0.url}}" /></a></div>
-            <div class="related-name"><a href="#">{{product.name}}</a>
-                <h4>${{product.price}}}</h4>
+            <div class="image"><a href="{{product.get_absolute_url}}"><img class="img-fluid d-block mx-auto" src="{{product.images.all.0.image.url}}" style="border-radius: 14px;border: 1px;"/></a></div>
+            <div class="related-name"><a href="{{product.get_absolute_url}}">{{product.name}}</a>
+                <h4>${{product.price}}</h4>
             </div>
         </div>
     </div>
@@ -115,7 +115,8 @@
         <p>insert emma's/miller's info here</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/cart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>

@@ -32,11 +32,11 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
-        <div class="container"><a class="navbar-brand logo" href="index.html">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="{% url 'index' %}">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'catalog' %}">Catalog</a></li>
                     <li class="nav-item" style="border-right-width: 1px;"><a class="nav-link active" href="custom-orders.html">Custom Ordering</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Cart (0)<i class="fa fa-shopping-cart" style="margin-left: 5px;"></i></a></li>
                 </ul>
@@ -53,11 +53,35 @@
             </div>
             <div class="container">
                 <form method="post">
-                    <h2 class="text-center">Contact us</h2>
-                    <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Name"></div>
-                    <div class="form-group"><input class="form-control is-invalid" type="email" name="email" placeholder="Email"><small class="form-text text-danger">Please enter a correct email address.</small></div>
-                    <div class="form-group"><textarea class="form-control" name="message" placeholder="Message" rows="14"></textarea></div>
-                    <div class="form-group"><button class="btn btn-primary" type="submit">add to cart</button></div>
+                    <p class="text-danger">READ BEFORE CONTINUING</p>
+                    <p style="margin: 0;">If you'd like to have a custom part printed, please upload the file(s) (preferably .STL) to a file-sharing service like Google Drive or Dropbox.<br><br>There are a few caveats with custom ordering:<br></p>
+                    <ul>
+                        <li>Custom orders must be submitted as separate orders from catalog-listed items. You can, however, submit multiple custom parts at once.</li>
+                        <li>Your order will not be processed until a student is able to prepare your order and let you know how much the order will cost. You will be contacted by either text or email with the price of printing, after which you can either cancel your order or pay the bookkeeper.</li>
+                        <li>The average price per gram of print material is slightly higher than normal to account for extra preparation time and a higher likelihood of print failure.</li>
+                        <li>We reserve the right to reject any custom order.</li>
+                    </ul>
+                    <div class="form-group"><input class="form-control" type="text" name="ShippingFirstName" placeholder="First Name" required=""></div>
+                    <div class="form-group"><input class="form-control" type="text" name="ShippingLastName" placeholder="Last Name" required=""></div>
+                    <div class="form-group"><input class="form-control" type="text" name="StudentID" placeholder="Student ID" required=""></div>
+                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email (don't use your student email)" required=""></div>
+                    <div class="form-group"><input class="form-control" type="tel" name="phone" placeholder="Phone" required=""></div>
+                    <div class="form-group"><textarea class="form-control" name="FileLinks" placeholder="Link(s) to files" rows="5" required=""></textarea></div>
+                    <p>If you would like to print specific amounts of certain parts or change the material used for each part, please set the quantity to "0" and/or the material to "Use special instructions" and explain in the Special Instructions box below. Otherwise, the quantity and material will be applied to <strong>every</strong>&nbsp;part above!</p>
+                    <div class="form-group"><input class="form-control" type="number" name="Quantity" placeholder="Quantity" required="" min="0" max="100"></div>
+                    <div class="form-group"><select class="form-control" required>
+    <option value="-1">Use special instructions</option>
+    {% for material in materials %}
+    <option value="{{material.id}}">{{material}}</option>
+    {% endfor %}
+</select></div>
+                    <p>If you have anything else you think we should know, please say so here.</p>
+                    <div class="form-group"><textarea class="form-control" name="SpecialInstructions" placeholder="Special Instructions" rows="5"></textarea></div>
+                    <p>After you click "Place Custom Order," you will be redirected to your order confirmation, which contains an order number. <strong>Make sure you keep this order number in a safe place.</strong>&nbsp;</p>
+                    <p>You will give your order number to the bookkeeper when you pay the cost (after it's been determined). After the bookkeeper confirms your payment, we'll start preparing your order and will let you know when it's ready. Depending on availability, this may be a very short time, or you might have to wait a few days.</p>
+                    <p>If you need to contact us, please include as much information about yourself as you can, especially your order number.</p>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="agreebox" required=""><label class="form-check-label" for="formCheck-1">I have read and understand the terms above.</label></div>
+                    <div class="form-group"><button class="btn btn-primary disabled" type="submit">Place Custom Order</button></div>
                 </form>
             </div>
         </section>
@@ -69,7 +93,8 @@
         <p>insert emma's/miller's info here</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/cart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
