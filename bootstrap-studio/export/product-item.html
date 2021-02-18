@@ -49,7 +49,7 @@
                 <div class="block-content">
                     <div class="product-info">
                         <div class="row">
-                            <div class="col-12 col-md-4 col-lg-4 col-xl-4"><div data-ride="carousel" class="carousel slide" id="carousel-1">
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-4"><div data-ride="carousel" class="carousel slide" id="carousel-1">
     <div class="carousel-inner">
     {% for pimage in product.images.all %}
         {% if forloop.first %}
@@ -70,31 +70,25 @@
         {% endfor %}
     </ol>
     </div></div>
-                            <div class="col-12 col-md-8 col-lg-8 col-xl-8">
+                            <div class="col-12 col-md-6 col-lg-5 col-xl-5">
                                 <div class="info">
                                     <h3>{{product.name}}</h3>
-                                    <div class="price">
-                                        <h3>${{product.price}}</h3>
+                                    <div class="summary">
+                                        <p>{{product.description}}</p>
                                     </div>
-                                    <div class="row">
-                                        <div class="col"><button class="btn btn-primary" id="cartAddButton" type="button"><i class="icon-basket"></i>Add to Cart</button></div>
-                                        <div class="col d-flex justify-content-center align-items-center"><span>Quantity</span><input type="number" value="1" style="width: 60px;margin-left: 15px;"></div>
-                                        <div class="col d-flex justify-content-center align-items-center"><span>Color</span><select style="width: 160px;margin-left: 15px;">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column" style="border-radius: 16px;border-width: 1px;border-style: solid;"><span style="font-size: 28px;color: var(--blue);">$4.00</span><span>Unit price: $4.00 each</span>
+                                <form style="margin-top: 10px;" method="post" action="/cart/">
+                                    <div class="form-group d-flex align-items-center"><span>Material</span><select class="form-control" name="material" style="width: 160px;margin-left: 15px;">
     {% for material in product.materials.all %}
     <option value="{{material.id}}">{{material}}</option>
     {% endfor %}
 </select></div>
-                                    </div>
-                                    <div class="summary">
-                                        <p>{{product.description}}<select>
-                                                <optgroup label="This is a group">
-                                                    <option value="12" selected="">This is item 1</option>
-                                                    <option value="13">This is item 2</option>
-                                                    <option value="14">This is item 3</option>
-                                                </optgroup>
-                                            </select></p>
-                                    </div>
-                                </div>
+                                    <div class="form-group d-flex align-items-center"><span>Quantity</span><input class="form-control" type="number" value="1" style="width: 60px;margin-left: 15px;"></div>
+                                    <div class="form-group d-flex align-items-center"><button class="btn btn-primary" id="cartAddButton" type="button"><i class="icon-basket"></i>Add to Cart</button></div>
+                                    <input class="form-control" type="hidden" name="product_id" value="{{ product.id }}">
+                                </form>
                             </div>
                         </div>
                     </div>

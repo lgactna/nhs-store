@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 
 from store.models import Product, ProductImage, ProductInstance, Order, Material
+from store.forms import CartForm
 import time
 # Create your views here.
 
@@ -18,18 +19,33 @@ def index(request):
         for pimage in product.images.all():
             print(pimage.image.url)
 
-    try:
-        request.session['cart'][str(time.time())] = "b"
-        request.session.modified = True
-    except:
-        cart = request.session.get('cart', {"dog":"bat"})
-        request.session['cart'] = cart
-
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
 
 def cart(request):
-    pass
+    try:
+        request.session['cart']
+    except:
+        cart = request.session.get('cart', {})
+        request.session['cart'] = cart
+    
+    if request.method == "POST":
+        form = CartForm(request.POST)
+        # Check if the form is valid:
+        if form.is_valid():
+            cart_item = {
+                "product_id": form.cleaned_data['product_id'],
+                "quantity": form.cleaned_data['quantity'],
+                "material": form.cleaned_data['material'],
+            }
+            request.session['cart'][str(time.time())] = cart_item
+            request.session.modified = True
+
+            #show cart page here...
+            return render(request, 'index.html')
+
+    else:
+        pass
 
 def checkout(request):
     pass
