@@ -27,7 +27,7 @@
             </div>
         {% endif %}
         <div class="container">
-            {% if request.method == "POST" and request.session.cart|length > 0 %}
+            {% if request.method == "POST" and request.session.cart|length > 1 %}
                 <h3 class="text-center">The rest of your cart:</h3>
             {% endif %}
             {% for cart_item in cart_contents %}
