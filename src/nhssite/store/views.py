@@ -23,12 +23,6 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 def cart(request):
-    try:
-        request.session['cart']
-    except:
-        cart = request.session.get('cart', {})
-        request.session['cart'] = cart
-    
     new_item_id = str(time.time())
 
     if request.method == "POST":
@@ -106,10 +100,21 @@ def checkout(request):
     return render(request, 'checkout.html', context=context)
 
 def confirmation(request):
-    pass
+    if request.method == "POST":
+        form = CartForm(request.POST)
+        # Check if the form is valid:
+        if form.is_valid():
+            cart_item = {
+                "product_id": form.cleaned_data['product_id'],
+                "quantity": form.cleaned_data['quantity'],
+                "material": form.cleaned_data['material'],
+            }
+            request.session['cart'][new_item_id] = cart_item
+            request.session.modified = True
 
 def custom_ordering(request):
     pass
+
 class ProductListView(generic.ListView):
     model = Product
     context_object_name = "products"
