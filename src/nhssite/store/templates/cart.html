@@ -3,20 +3,30 @@
 {% block main %}
 <section class="portfolio-block" style="padding-top: 35px;">
     <div class="container">
-        <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
+        <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 16px;">
             <h2>cart</h2>
-            <p>You have {{ request.session.cart|length }} items in your cart for a projected total of ${{total_cost}}.</p>
+            <p style="margin-bottom: 5px;">You have {{ request.session.cart|length }} items in your cart for a projected total of ${{total_cost}}.</p>
             <div class="d-flex" style="max-width: 420px;width: 100%;"><a class="btn btn-success" role="button" href="{% url 'catalog' %}">Continue Shopping</a><a class="btn btn-warning" role="button" style="margin-left: auto;" href="{% url 'checkout' %}">Checkout</a></div>
         </div>
+        <div class="d-flex justify-content-end" style="margin-bottom: 16px;"><button class="btn btn-danger" type="button" style="max-height: 41.6px;">Remove all items</button></div>
+        {% if removed_item_name %}
+        <div class="alert alert-danger" role="alert"><span><strong>{{removed_item_name}} removed.</strong></span></div>
+        {% endif %}
+        {% if cart_cleared %}
+        <div class="alert alert-danger" role="alert"><span><strong>Cart cleared.</strong></span></div>
+        {% endif %}
+        {% if request.session.cart|length == 0 %}
+        <div class="alert alert-info" role="alert"><span><strong>No items in cart.</strong></span></div>
+        {% endif %}
     </div>
     {% if request.session.cart|length != 0 %}
         {% if request.method == "POST" %}
             <div class="container">
-                <h3 class="text-center">Item added!</h3>
+                <div class="alert alert-success" role="alert"><span><strong>Item added!</strong></span></div>
                 <div class="row" style="background: rgba(0,0,0,0.05);border-radius: 8px;padding: 15px;margin-bottom: 15px;">
                     <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 d-flex justify-content-center align-items-center"><img style="width: 100%;" src="{{new_item.product.images.all.0.image.url}}"></div>
                     <div class="col d-flex flex-column">
-                        <div class="d-flex">
+                        <div class="d-flex" style="margin-bottom:-10px;">
                             <h3><a href="{{ new_item.product.get_absolute_url }}">{{ new_item.product }}</a></h3><button class="btn btn-danger" type="button" style="max-width: 110px;margin-left: auto;max-height: 41.6px;">Remove</button>
                         </div>
                             <span style="font-size: 20px;">${{ new_item.item_cost|stringformat:".2f" }}<span style="font-size:16px; margin-left:5px;">(${{ new_item.product.price }} ea)</span></span>
@@ -28,13 +38,13 @@
         {% endif %}
         <div class="container">
             {% if request.method == "POST" and request.session.cart|length > 1 %}
-                <h3 class="text-center">The rest of your cart:</h3>
+                <h3>The rest of your cart:</h3>
             {% endif %}
             {% for cart_item in cart_contents %}
                 <div class="row" style="background: rgba(0,0,0,0.05);border-radius: 8px;padding: 15px;margin-bottom: 15px;">
                     <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 d-flex justify-content-center align-items-center"><img style="width: 100%;" src="{{cart_item.product.images.all.0.image.url}}"></div>
                     <div class="col d-flex flex-column">
-                        <div class="d-flex">
+                        <div class="d-flex" style="margin-bottom:-10px;">
                             <h3><a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.product }}</a></h3><button class="btn btn-danger" type="button" style="max-width: 110px;margin-left: auto;max-height: 41.6px;">Remove</button>
                         </div>
                             <span style="font-size: 20px;">${{ cart_item.item_cost|stringformat:".2f" }}<span style="font-size:16px; margin-left:5px;">(${{ cart_item.product.price }} ea)</span></span>
@@ -43,10 +53,6 @@
                         </div>
                 </div>
             {% endfor %}
-        </div>
-    {% else %}
-        <div class="container">
-            <h3 class="text-center">No items in cart!</h3>
         </div>
     {% endif %}
 </section>
