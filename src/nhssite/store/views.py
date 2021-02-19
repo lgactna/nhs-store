@@ -114,10 +114,14 @@ def confirmation(request):
                 product_instance.save()
             order_obj.grand_total = grand_total
             
+            context = generate_cart_context(request)
+
             request.session['cart'] = {}
-            return render(request, 'index.html')
+            return render(request, 'confirmation.html', context=context)
     else:
-        return cart(request)
+        context = generate_cart_context(request)
+        context['alert_message'] = "You have to order something first before you can get a confirmation. 🤔"
+        return render(request, 'cart.html', context=context)
 
 def custom_ordering(request):
     pass

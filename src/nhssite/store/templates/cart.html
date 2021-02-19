@@ -9,11 +9,8 @@
             <div class="d-flex" style="max-width: 420px;width: 100%;"><a class="btn btn-success" role="button" href="{% url 'catalog' %}">Continue Shopping</a><a class="btn btn-warning" role="button" style="margin-left: auto;" href="{% url 'checkout' %}">Checkout</a></div>
         </div>
         <div class="d-flex justify-content-end" style="margin-bottom: 16px;"><button class="btn btn-danger" type="button" style="max-height: 41.6px;">Remove all items</button></div>
-        {% if removed_item_name %}
-        <div class="alert alert-danger" role="alert"><span><strong>{{removed_item_name}} removed.</strong></span></div>
-        {% endif %}
-        {% if cart_cleared %}
-        <div class="alert alert-danger" role="alert"><span><strong>Cart cleared.</strong></span></div>
+        {% if alert_message %}
+        <div class="alert alert-danger" role="alert"><span><strong>{{alert_message}}</strong></span></div>
         {% endif %}
         {% if request.session.cart|length == 0 %}
         <div class="alert alert-info" role="alert"><span><strong>No items in cart.</strong></span></div>
