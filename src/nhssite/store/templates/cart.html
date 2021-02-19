@@ -8,7 +8,9 @@
             <p style="margin-bottom: 5px;">You have {{ request.session.cart|length }} items in your cart for a projected total of ${{total_cost}}.</p>
             <div class="d-flex" style="max-width: 420px;width: 100%;"><a class="btn btn-success" role="button" href="{% url 'catalog' %}">Continue Shopping</a><a class="btn btn-warning" role="button" style="margin-left: auto;" href="{% url 'checkout' %}">Checkout</a></div>
         </div>
+        {% if request.session.cart|length != 0 %}
         <div class="d-flex justify-content-end" style="margin-bottom: 16px;"><button class="btn btn-danger" type="button" style="max-height: 41.6px;">Remove all items</button></div>
+        {% endif %}
         {% if alert_message %}
         <div class="alert alert-danger" role="alert"><span><strong>{{alert_message}}</strong></span></div>
         {% endif %}
