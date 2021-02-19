@@ -10,3 +10,14 @@ class CartForm(forms.Form):
         if quantity_input <= 0:
             quantity_input = 1
         return quantity_input
+
+class CheckoutForm(forms.Form):
+    first_name = forms.CharField(max_length=50)
+    last_name = forms.CharField(max_length=50)
+    student_id = forms.CharField(max_length=10)
+    email = forms.EmailField()
+    #phone is not standardized - a human will be contacting anyways
+    phone = forms.CharField(max_length=15)
+    extra_notes = forms.CharField(required=False)
+class CustomOrderForm(forms.Form):
+    pass

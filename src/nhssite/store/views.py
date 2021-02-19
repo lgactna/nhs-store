@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 
 from store.models import Product, ProductImage, ProductInstance, Order, Material
-from store.forms import CartForm
+from store.forms import CartForm, CheckoutForm
 import time
 # Create your views here.
 
@@ -101,16 +101,46 @@ def checkout(request):
 
 def confirmation(request):
     if request.method == "POST":
-        form = CartForm(request.POST)
+        form = CheckoutForm(request.POST)
         # Check if the form is valid:
         if form.is_valid():
-            cart_item = {
-                "product_id": form.cleaned_data['product_id'],
-                "quantity": form.cleaned_data['quantity'],
-                "material": form.cleaned_data['material'],
-            }
-            request.session['cart'][new_item_id] = cart_item
-            request.session.modified = True
+            order_obj = Order(
+                first_name = form.cleaned_data['first_name'],
+                last_name = form.cleaned_data['last_name'],
+                student_id = form.cleaned_data['student_id'],
+                email = form.cleaned_data['email'],
+                phone = form.cleaned_data['phone'],
+                extra_notes = form.cleaned_data['extra_notes'],
+                grand_total = 0.0
+            )
+            order_obj.save()
+
+            grand_total = 0
+            for cart_id, cart_item in request.session['cart'].items():
+                product_obj = Product.objects.get(id=cart_item['product_id'])
+                material_obj = Material.objects.get(id=cart_item['material'])
+                price = int(cart_item['quantity'])*product_obj.price
+                grand_total += price
+
+                product_instance = ProductInstance(
+                    product = product_obj,
+                    material = material_obj,
+                    quantity = int(cart_item['quantity']),
+                    total_price = price,
+                    order = order_obj
+                )
+                product_instance.save()
+            order_obj.grand_total = grand_total
+            
+            request.session['cart'] = {}
+            return render(request, 'index.html')
+    else:
+        return cart(request)
+
+    
+
+
+        
 
 def custom_ordering(request):
     pass
