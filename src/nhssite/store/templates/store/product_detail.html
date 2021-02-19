@@ -1,5 +1,7 @@
 {% extends "base_generic.html" %}
 
+{% load static %}
+
 {% block main %}
     <section class="clean-block clean-product dark" style="margin-top: 40px;">
         <div class="container">
@@ -35,7 +37,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column" style="border-radius: 16px;border-width: 1px;border-style: solid;"><span style="font-size: 28px;color: var(--blue);">$4.00</span><span>Unit price: $4.00 each</span>
+                        <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column" style="border-radius: 16px;border-width: 1px;border-style: solid;"><span style="font-size: 28px;color: var(--blue);" id="total-price">$4.00</span><span>Unit price: $4.00 each</span>
                             <form style="margin-top: 10px;" method="post" action="{% url 'cart' %}">
                                 {% csrf_token %}
                                 <div class="form-group d-flex align-items-center"><span>Material</span><select name="material" class="form-control" style="width: 160px;margin-left: 15px;">
@@ -43,7 +45,7 @@
     <option value="{{material.id}}">{{material}}</option>
     {% endfor %}
     </select></div>
-                                <div class="form-group d-flex align-items-center"><span>Quantity</span><input class="form-control" name="quantity" type="number" value="1" style="width: 60px;margin-left: 15px;"></div>
+                                <div class="form-group d-flex align-items-center"><span>Quantity</span><input class="form-control" name="quantity" type="number" value="1" min="1" style="width: 60px;margin-left: 15px;"></div>
                                 <div class="form-group d-flex align-items-center"><button class="btn btn-primary" id="cartAddButton" type="submit"><i class="icon-basket"></i>Add to Cart</button></div>
                                 <input class="form-control" type="hidden" name="product_id" value="{{ product.id }}">
                             </form>
@@ -53,7 +55,11 @@
             </div>
         </div>
     </section>
+    {% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         unit_price = {{product.price}};
     </script>
+    <script src="{% static 'js/product-detail.js' %}"></script>
+    {% endblock %}
 {% endblock %}
