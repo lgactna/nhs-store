@@ -4,12 +4,13 @@
     <section class="portfolio-block" style="padding-top: 35px;">
         <div class="container">
             <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
-                <h2>CHECKOUT</h2><a class="btn btn-warning" role="button">Return to Cart</a>
+                <h2>CHECKOUT</h2><a class="btn btn-warning" role="button" href="{% url 'cart' %}">Return to Cart</a>
             </div>
             {% if request.session.cart|length == 0 %}
             <div role="alert" class="alert alert-danger"><span><strong>Can&#39;t start checkout process </strong>- there&#39;s nothing in your cart!</span></div>
             {% endif %}
         </div>
+        {% if request.session.cart|length != 0 %}
         <div class="container">
             <div>
                 <h4>Order Summary</h4>
@@ -59,5 +60,6 @@
                 <div class="form-group"><button class="btn btn-primary disabled" type="submit">Place Order</button></div>
             </form>
         </div>
+        {% endif %}
     </section>
 {% endblock %}
