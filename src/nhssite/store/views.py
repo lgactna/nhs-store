@@ -76,7 +76,34 @@ def cart_delete(request):
     pass
 
 def checkout(request):
-    pass
+    cart_contents = []
+    total_quantity = 0
+    total_cost = 0
+    new_item = None
+
+    for cart_id, cart_item in request.session['cart'].items():
+        product_obj = Product.objects.get(id=cart_item['product_id'])
+        material_obj = Material.objects.get(id=cart_item['material'])
+        item_cost = int(cart_item['quantity'])*product_obj.price
+        cart_dict = {
+            "product": product_obj,
+            "quantity": cart_item['quantity'],
+            "material": material_obj,
+            "item_cost": item_cost
+        }
+        total_cost += item_cost
+        total_quantity += cart_item['quantity']
+
+        cart_contents.append(cart_dict)
+
+    context = {
+        "cart_contents": cart_contents,
+        "total_cost": total_cost,
+        "total_quantity": total_quantity,
+        "new_item": new_item
+    }
+    #show cart page here...
+    return render(request, 'checkout.html', context=context)
 
 def confirmation(request):
     pass

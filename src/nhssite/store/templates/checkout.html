@@ -1,0 +1,63 @@
+{% extends "base_generic.html" %}
+
+{% block main %}
+    <section class="portfolio-block" style="padding-top: 35px;">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
+                <h2>CHECKOUT</h2><a class="btn btn-warning" role="button">Return to Cart</a>
+            </div>
+            {% if request.session.cart|length == 0 %}
+            <div role="alert" class="alert alert-danger"><span><strong>Can&#39;t start checkout process </strong>- there&#39;s nothing in your cart!</span></div>
+            {% endif %}
+        </div>
+        <div class="container">
+            <div>
+                <h4>Order Summary</h4>
+                <div class="table-responsive" overflow="auto">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 250px;">Item</th>
+                                <th style="width: 185px;">Material</th>
+                                <th style="width: 120px;">Quantity</th>
+                                <th style="width: 84px;">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cart_item in cart_contents %}
+                            <tr>
+                                <td>{{cart_item.product}}</td>
+                                <td>{{cart_item.material}}</td>
+                                <td>{{cart_item.quantity}}</td>
+                                <td>${{ cart_item.item_cost|stringformat:".2f" }}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td style="text-align: right;"><br></td>
+                                <td class="d-flex justify-content-end"><strong>Grand Total</strong></td>
+                                <td><strong>{{total_quantity}}</strong></td>
+                                <td><strong>${{total_cost|stringformat:".2f"}}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <h3>Details</h3>
+                <div class="form-group"><input class="form-control" type="text" name="ShippingFirstName" placeholder="First Name" required=""></div>
+                <div class="form-group"><input class="form-control" type="text" name="ShippingLastName" placeholder="Last Name" required=""></div>
+                <div class="form-group"><input class="form-control" type="text" name="StudentID" placeholder="Student ID" required="" pattern="^[0-9]+$"></div>
+                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email (don't use your student email)" required=""></div>
+                <div class="form-group"><input class="form-control" type="tel" name="phone" placeholder="Phone" required=""></div>
+                <p>If you have anything else you think we should know, please say so here.</p>
+                <div class="form-group"><textarea class="form-control" name="SpecialInstructions" placeholder="Special Instructions" rows="5"></textarea></div>
+                <p>After you click "Place Order," you will be redirected to your order confirmation, which contains an order number. <strong>Make sure you keep this order number in a safe place.</strong>&nbsp;</p>
+                <p>You will give your order number to the bookkeeper when you pay the amount listed above.&nbsp; After the bookkeeper confirms your payment, we'll start preparing your order and will let you know when it's ready. Depending on availability, this may be a very short time, or you might have to wait a few days.</p>
+                <p>If you need to contact us, please include as much information about yourself as you can, especially your order number.</p>
+                <div class="form-check"><input class="form-check-input" type="checkbox" id="agreebox" required=""><label class="form-check-label" for="formCheck-1">I have read and understand the terms above.</label></div>
+                <div class="form-group"><button class="btn btn-primary disabled" type="submit">Place Order</button></div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

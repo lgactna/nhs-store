@@ -6,7 +6,7 @@
         <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
             <h2>cart</h2>
             <p>You have {{ request.session.cart|length }} items in your cart for a projected total of ${{total_cost}}.</p>
-            <div class="d-flex" style="max-width: 420px;width: 100%;"><a class="btn btn-success" role="button" href="{% url 'catalog' %}">Continue Shopping</a><a class="btn btn-warning" role="button" style="margin-left: auto;">Checkout</a></div>
+            <div class="d-flex" style="max-width: 420px;width: 100%;"><a class="btn btn-success" role="button" href="{% url 'catalog' %}">Continue Shopping</a><a class="btn btn-warning" role="button" style="margin-left: auto;" href="{% url 'checkout' %}">Checkout</a></div>
         </div>
     </div>
     {% if request.session.cart|length != 0 %}
