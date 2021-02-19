@@ -63,12 +63,21 @@
                     <table class="table">
                         <tbody>
                             <tr>
+                                
                                 <td><strong>Material</strong></td>
+                                {% if order.custom_material %}
                                 <td>{{order.custom_material}}</td>
+                                {% else %}
+                                <td>See special instructions</td>
+                                {% endif %}
                             </tr>
                             <tr>
                                 <td><strong>Quantity</strong></td>
+                                {% if order.custom_quantity != 0 %}
                                 <td>{{order.custom_quantity}}</td>
+                                {% else %}
+                                <td>See special instructions</td>
+                                {% endif %}
                             </tr>
                         </tbody>
                     </table>

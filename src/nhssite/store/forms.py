@@ -20,4 +20,13 @@ class CheckoutForm(forms.Form):
     phone = forms.CharField(max_length=15)
     special_instructions = forms.CharField(required=False)
 class CustomOrderForm(forms.Form):
-    pass
+    first_name = forms.CharField(max_length=50)
+    last_name = forms.CharField(max_length=50)
+    student_id = forms.CharField(max_length=10)
+    email = forms.EmailField()
+    phone = forms.CharField(max_length=15)
+
+    custom_links = forms.CharField()
+    custom_quantity = forms.IntegerField()
+    custom_material = forms.IntegerField()
+    special_instructions = forms.CharField(required=False)

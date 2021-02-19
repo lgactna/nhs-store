@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 
 from store.models import Product, ProductImage, ProductInstance, Order, Material
-from store.forms import CartForm, CheckoutForm
+from store.forms import CartForm, CheckoutForm, CustomOrderForm
 import time
 # Create your views here.
 
@@ -70,7 +70,7 @@ def cart(request):
             request.session['cart'][new_item_id] = cart_item
             request.session.modified = True
 
-    context = generate_cart_context(request)
+    context = generate_cart_context(request, new_item_id=new_item_id)
     #show cart page here...
     return render(request, 'cart.html', context=context)
 
@@ -131,7 +131,35 @@ def confirmation(request):
         return render(request, 'cart.html', context=context)
 
 def custom_ordering(request):
-    pass
+    context = {"materials": Material.objects.all()}
+    return render(request, 'custom-ordering.html', context=context)
+
+def custom_confirmation(request):
+    if request.method == "POST":
+        form = CustomOrderForm(request.POST)
+        # Check if the form is valid:
+        if form.is_valid():
+            material_id = form.cleaned_data['custom_material']
+
+            order_obj = Order(
+                first_name = form.cleaned_data['first_name'],
+                last_name = form.cleaned_data['last_name'],
+                student_id = form.cleaned_data['student_id'],
+                email = form.cleaned_data['email'],
+                phone = form.cleaned_data['phone'],
+                is_custom = True,
+                custom_links = form.cleaned_data['custom_links'],
+                custom_quantity = form.cleaned_data['custom_quantity'],
+                custom_material = Material.objects.get(id=material_id) if material_id != -1 else None,
+                special_instructions = form.cleaned_data['special_instructions'],
+                grand_total = 0.0
+            )
+            order_obj.save()
+
+            context = {"order": order_obj}
+            return render(request, 'confirmation.html', context=context)
+    else:
+        return custom_ordering(request)
 
 class ProductListView(generic.ListView):
     model = Product
