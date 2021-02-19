@@ -6,6 +6,39 @@ from store.forms import CartForm, CheckoutForm
 import time
 # Create your views here.
 
+def generate_cart_context(request, *, new_item_id=None):
+    cart_contents = []
+    total_cost = 0
+    total_quantity = 0
+    new_item = None
+
+    for cart_id, cart_item in request.session['cart'].items():
+        product_obj = Product.objects.get(id=cart_item['product_id'])
+        material_obj = Material.objects.get(id=cart_item['material'])
+        item_cost = int(cart_item['quantity'])*product_obj.price
+        cart_dict = {
+            "product": product_obj,
+            "quantity": int(cart_item['quantity']),
+            "material": material_obj,
+            "item_cost": item_cost
+        }
+        total_cost += item_cost
+        total_quantity += cart_item['quantity']
+
+        if cart_id == new_item_id:
+            new_item = cart_dict
+        else:
+            cart_contents.append(cart_dict)
+
+    context = {
+        "cart_contents": cart_contents,
+        "total_cost": total_cost,
+        "total_quantity": total_quantity,
+        "new_item": new_item
+    }
+
+    return context
+
 def index(request):
     """View function for home page of site."""
 
@@ -37,32 +70,7 @@ def cart(request):
             request.session['cart'][new_item_id] = cart_item
             request.session.modified = True
 
-    cart_contents = []
-    total_cost = 0
-    new_item = None
-
-    for cart_id, cart_item in request.session['cart'].items():
-        product_obj = Product.objects.get(id=cart_item['product_id'])
-        material_obj = Material.objects.get(id=cart_item['material'])
-        item_cost = int(cart_item['quantity'])*product_obj.price
-        cart_dict = {
-            "product": product_obj,
-            "quantity": cart_item['quantity'],
-            "material": material_obj,
-            "item_cost": item_cost
-        }
-        total_cost += item_cost
-
-        if cart_id == new_item_id:
-            new_item = cart_dict
-        else:
-            cart_contents.append(cart_dict)
-
-    context = {
-        "cart_contents": cart_contents,
-        "total_cost": total_cost,
-        "new_item": new_item
-    }
+    context = generate_cart_context(request)
     #show cart page here...
     return render(request, 'cart.html', context=context)
 
@@ -70,33 +78,7 @@ def cart_delete(request):
     pass
 
 def checkout(request):
-    cart_contents = []
-    total_quantity = 0
-    total_cost = 0
-    new_item = None
-
-    for cart_id, cart_item in request.session['cart'].items():
-        product_obj = Product.objects.get(id=cart_item['product_id'])
-        material_obj = Material.objects.get(id=cart_item['material'])
-        item_cost = int(cart_item['quantity'])*product_obj.price
-        cart_dict = {
-            "product": product_obj,
-            "quantity": cart_item['quantity'],
-            "material": material_obj,
-            "item_cost": item_cost
-        }
-        total_cost += item_cost
-        total_quantity += cart_item['quantity']
-
-        cart_contents.append(cart_dict)
-
-    context = {
-        "cart_contents": cart_contents,
-        "total_cost": total_cost,
-        "total_quantity": total_quantity,
-        "new_item": new_item
-    }
-    #show cart page here...
+    context = generate_cart_context(request)
     return render(request, 'checkout.html', context=context)
 
 def confirmation(request):
@@ -136,11 +118,6 @@ def confirmation(request):
             return render(request, 'index.html')
     else:
         return cart(request)
-
-    
-
-
-        
 
 def custom_ordering(request):
     pass
