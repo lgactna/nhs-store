@@ -83,6 +83,12 @@ def checkout(request):
 
 def confirmation(request):
     if request.method == "POST":
+        #protection against refreshing or posts with empty cart
+        if len(request.session['cart']) == 0:
+            context = generate_cart_context(request)
+            context['alert_message'] = "You have to order something first before you can get a confirmation. 🤔"
+            return render(request, 'cart.html', context=context)
+
         form = CheckoutForm(request.POST)
         # Check if the form is valid:
         if form.is_valid():
