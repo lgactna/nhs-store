@@ -104,12 +104,13 @@ class Order(models.Model):
     student_id = models.CharField(max_length=10)
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=15) #you will provide number or perish
+    special_instructions = models.TextField(default="", blank=True, null=True)
     extra_notes = models.TextField(default="", blank=True, null=True)
     paid = models.BooleanField(default=False)
     fulfilled = models.BooleanField(default=False)
 
     is_custom = models.BooleanField(default=False)
-    extra_notes = models.TextField(default="", blank=True, null=True)
+    custom_links = models.TextField(default="", blank=True, null=True)
     custom_material = models.ForeignKey("Material", on_delete=models.SET_NULL, blank=True, null=True)
     custom_quantity = models.IntegerField(blank=True, null=True)
 

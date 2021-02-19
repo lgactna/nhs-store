@@ -18,6 +18,6 @@ class CheckoutForm(forms.Form):
     email = forms.EmailField()
     #phone is not standardized - a human will be contacting anyways
     phone = forms.CharField(max_length=15)
-    extra_notes = forms.CharField(required=False)
+    special_instructions = forms.CharField(required=False)
 class CustomOrderForm(forms.Form):
     pass

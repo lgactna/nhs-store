@@ -92,7 +92,7 @@ def confirmation(request):
                 student_id = form.cleaned_data['student_id'],
                 email = form.cleaned_data['email'],
                 phone = form.cleaned_data['phone'],
-                extra_notes = form.cleaned_data['extra_notes'],
+                special_instructions = form.cleaned_data['special_instructions'],
                 grand_total = 0.0
             )
             order_obj.save()
@@ -115,6 +115,7 @@ def confirmation(request):
             order_obj.grand_total = grand_total
             
             context = generate_cart_context(request)
+            context["order"] = order_obj
 
             request.session['cart'] = {}
             return render(request, 'confirmation.html', context=context)
