@@ -48,7 +48,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '-yf5_@q32*^sd!%bd*igx)z%xgd!vu
 #DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'aact-nhs.herokuapp.com']
 
 
 # Application definition
