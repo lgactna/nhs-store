@@ -10,6 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
+
+if os.getenv("on_heroku") != "TRUE":
+    from dotenv import load_dotenv
+    load_dotenv()
+
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn=os.getenv("SENTRY_DSN"),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +40,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-yf5_@q32*^sd!%bd*igx)z%xgd!vux50odu+5uhup3z&15ox^'
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '-yf5_@q32*^sd!%bd*igx)z%xgd!vux50odu+5uhup3z&15ox^')
+#SECRET_KEY = '-yf5_@q32*^sd!%bd*igx)z%xgd!vux50odu+5uhup3z&15ox^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -122,6 +145,12 @@ USE_TZ = True
 import os
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
 #MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
+#below: from mdn 11
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
