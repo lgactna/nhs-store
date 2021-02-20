@@ -12,3 +12,5 @@ urlpatterns = [
     path('custom-ordering/', views.custom_ordering, name='custom-ordering'),
     path('custom-confirmation/', views.custom_confirmation, name='custom-confirmation')
 ]
+
+handler404 = 'store.views.page_not_found_view'

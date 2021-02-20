@@ -196,3 +196,6 @@ class ProductListView(generic.ListView):
     template_name = "store/catalog.html"
 class ProductDetailView(generic.DetailView):
     model = Product
+
+def page_not_found_view(request, exception):
+    return render(request, '404.html')
