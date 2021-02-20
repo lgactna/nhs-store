@@ -192,7 +192,7 @@ CORS_ALLOWED_ORIGINS = [
 
 #azure
 AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
-AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+AZURE_CUSTOM_DOMAIN = f'https://{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
 CORS_ALLOWED_ORIGINS.append(AZURE_CUSTOM_DOMAIN)
 
 DEFAULT_FILE_STORAGE = 'backend.custom_azure.AzureMediaStorage'
