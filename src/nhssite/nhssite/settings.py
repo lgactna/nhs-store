@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-'''
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -43,7 +43,7 @@ LOGGING = {
         },
     }
 }
-'''
+
 
 import os
 
