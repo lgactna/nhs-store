@@ -9,6 +9,8 @@ class CartForm(forms.Form):
         quantity_input = self.cleaned_data['quantity']
         if quantity_input <= 0:
             quantity_input = 1
+        elif quantity_input > 99:
+            quantity_input = 99
         return quantity_input
 
 class CheckoutForm(forms.Form):
