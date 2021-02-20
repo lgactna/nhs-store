@@ -184,9 +184,16 @@ USE_TZ = True
 #as per https://medium.com/@DawlysD/django-using-azure-blob-storage-to-handle-static-media-assets-from-scratch-90cbbc7d56be
 #static served by whitenoise, media served by azure
 
+#django-cors
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://127.0.0.1:9000",
+]
+
 #azure
 AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
 AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+CORS_ALLOWED_ORIGINS.append(AZURE_CUSTOM_DOMAIN)
 
 DEFAULT_FILE_STORAGE = 'backend.custom_azure.AzureMediaStorage'
 #STATICFILES_STORAGE = 'backend.custom_azure.AzureStaticStorage'
@@ -215,9 +222,3 @@ DATABASES['default'].update(db_from_env)
 #this inexplicably breaks things so it's disabled
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-#django-cors
-CORS_ALLOWED_ORIGINS = [
-    "https://aactnhsstorage.blob.core.windows.net",
-    "http://localhost:8080",
-    "http://127.0.0.1:9000"
-]
