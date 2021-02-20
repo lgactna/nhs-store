@@ -1,5 +1,7 @@
 {% extends "base_generic.html" %}
 
+{% load static %}
+
 {% block head %}
     <title>Cart - miller's r us</title>
 {% endblock %}
@@ -58,8 +60,10 @@
             {% endfor %}
         </div>
     {% endif %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         var delete_url = "{% url 'cart-delete' %}"
     </script>
+    <script src="{% static 'js/cart.js' %}"></script>
 </section>
 {% endblock %}
