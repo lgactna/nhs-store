@@ -13,7 +13,7 @@
             <div class="d-flex" style="max-width: 420px;width: 100%;"><a class="btn btn-success" role="button" href="{% url 'catalog' %}">Continue Shopping</a><a class="btn btn-warning" role="button" style="margin-left: auto;" href="{% url 'checkout' %}">Checkout</a></div>
         </div>
         {% if request.session.cart|length != 0 %}
-        <div class="d-flex justify-content-end" style="margin-bottom: 16px;"><button class="btn btn-danger" type="button" style="max-height: 41.6px;">Remove all items</button></div>
+        <div class="d-flex justify-content-end" style="margin-bottom: 16px;"><button class="btn btn-danger delete-button" type="button" style="max-height: 41.6px;" id="0">Remove all items</button></div>
         {% endif %}
         {% if alert_message %}
         <div class="alert alert-danger" role="alert"><span><strong>{{alert_message}}</strong></span></div>
@@ -30,7 +30,7 @@
                     <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 d-flex justify-content-center align-items-center"><img style="width: 100%;" src="{{new_item.product.images.all.0.image.url}}"></div>
                     <div class="col d-flex flex-column">
                         <div class="d-flex" style="margin-bottom:-10px;">
-                            <h3><a href="{{ new_item.product.get_absolute_url }}">{{ new_item.product }}</a></h3><button class="btn btn-danger" type="button" style="max-width: 110px;margin-left: auto;max-height: 41.6px;">Remove</button>
+                            <h3><a href="{{ new_item.product.get_absolute_url }}">{{ new_item.product }}</a></h3><button class="btn btn-danger delete-button" type="button" style="max-width: 110px;margin-left: auto;max-height: 41.6px;" id={{new_item.cart_id}}>Remove</button>
                         </div>
                             <span style="font-size: 20px;">${{ new_item.item_cost|stringformat:".2f" }}<span style="font-size:16px; margin-left:5px;">(${{ new_item.product.price }} ea)</span></span>
                             <span>Material: {{ new_item.material }}</span>
@@ -48,7 +48,7 @@
                     <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 d-flex justify-content-center align-items-center"><img style="width: 100%;" src="{{cart_item.product.images.all.0.image.url}}"></div>
                     <div class="col d-flex flex-column">
                         <div class="d-flex" style="margin-bottom:-10px;">
-                            <h3><a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.product }}</a></h3><button class="btn btn-danger" type="button" style="max-width: 110px;margin-left: auto;max-height: 41.6px;">Remove</button>
+                            <h3><a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.product }}</a></h3><button class="btn btn-danger delete-button" type="button" style="max-width: 110px;margin-left: auto;max-height: 41.6px;" id={{cart_item.cart_id}}>Remove</button>
                         </div>
                             <span style="font-size: 20px;">${{ cart_item.item_cost|stringformat:".2f" }}<span style="font-size:16px; margin-left:5px;">(${{ cart_item.product.price }} ea)</span></span>
                             <span>Material: {{ cart_item.material }}</span>
@@ -58,5 +58,8 @@
             {% endfor %}
         </div>
     {% endif %}
+    <script type="text/javascript">
+        var delete_url = "{% url 'cart-delete' %}"
+    </script>
 </section>
 {% endblock %}

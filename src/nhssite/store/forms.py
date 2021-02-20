@@ -30,3 +30,6 @@ class CustomOrderForm(forms.Form):
     custom_quantity = forms.IntegerField()
     custom_material = forms.IntegerField()
     special_instructions = forms.CharField(required=False)
+
+class CartDeleteForm(forms.Form):
+    cart_id = forms.CharField()

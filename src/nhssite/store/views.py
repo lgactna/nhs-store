@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 
 from store.models import Product, ProductImage, ProductInstance, Order, Material
-from store.forms import CartForm, CheckoutForm, CustomOrderForm
+from store.forms import CartForm, CheckoutForm, CustomOrderForm, CartDeleteForm
 import time
 # Create your views here.
 
@@ -20,7 +20,8 @@ def generate_cart_context(request, *, new_item_id=None):
             "product": product_obj,
             "quantity": int(cart_item['quantity']),
             "material": material_obj,
-            "item_cost": item_cost
+            "item_cost": item_cost,
+            "cart_id": cart_id
         }
         total_cost += item_cost
         total_quantity += cart_item['quantity']
@@ -75,7 +76,35 @@ def cart(request):
     return render(request, 'cart.html', context=context)
 
 def cart_delete(request):
-    pass
+    context = generate_cart_context(request)
+    if request.method == "POST":
+        form = CartDeleteForm(request.POST)
+        if form.is_valid():
+            
+            cart_id = form.cleaned_data["cart_id"]
+            if cart_id == "0":
+                request.session['cart'] = {}
+                context['alert_message'] = "Cleared cart."
+                return render(request, 'cart.html', context=context)
+            else:
+                try:
+                    product_obj = Product.objects.get(id=request.session['cart'][cart_id]["product_id"])
+                    del request.session['cart'][cart_id]
+                    request.session.modified = True
+
+                    context['alert_message'] = f"Removed {product_obj}."
+                    return render(request, 'cart.html', context=context)
+                except: 
+                    context['alert_message'] = "Failed to remove cart item."
+                    return render(request, 'cart.html', context=context)
+        else:
+            print("c")
+            context['alert_message'] = "Failed to remove cart item."
+            return render(request, 'cart.html', context=context)
+    else:
+        #ignore if not post
+        context = generate_cart_context(request)
+        return render(request, 'cart.html', context=context)
 
 def checkout(request):
     context = generate_cart_context(request)
