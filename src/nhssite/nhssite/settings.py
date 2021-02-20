@@ -96,10 +96,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
+    'storages',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -178,10 +181,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+#as per https://medium.com/@DawlysD/django-using-azure-blob-storage-to-handle-static-media-assets-from-scratch-90cbbc7d56be
+#static served by whitenoise, media served by azure
+
+#azure
+AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+
+DEFAULT_FILE_STORAGE = 'backend.custom_azure.AzureMediaStorage'
+#STATICFILES_STORAGE = 'backend.custom_azure.AzureStaticStorage'
+
+#STATIC_LOCATION = "static"
+MEDIA_LOCATION = "media"
+
+#STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+
+#local
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-MEDIA_URL = '/media/'
+#MEDIA_URL = '/media/'
 #MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
 
 #below: from mdn 11
 # Heroku: Update database configuration from $DATABASE_URL.
@@ -193,3 +214,10 @@ DATABASES['default'].update(db_from_env)
 # https://warehouse.python.org/project/whitenoise/
 #this inexplicably breaks things so it's disabled
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#django-cors
+CORS_ALLOWED_ORIGINS = [
+    "https://aactnhsstorage.blob.core.windows.net",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000"
+]
