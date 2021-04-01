@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
+from django.core import mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 from store.models import Product, ProductImage, ProductInstance, Order, Material
 from store.forms import CartForm, CheckoutForm, CustomOrderForm, CartDeleteForm
@@ -152,6 +155,8 @@ def confirmation(request):
             context = generate_cart_context(request)
             context["order"] = order_obj
 
+            send_confirmation_email(context, form.cleaned_data['email'])
+
             request.session['cart'] = {}
             return render(request, 'confirmation.html', context=context)
     else:
@@ -186,9 +191,28 @@ def custom_confirmation(request):
             order_obj.save()
 
             context = {"order": order_obj}
+
+            send_confirmation_email(context, form.cleaned_data['email'])
+            
             return render(request, 'confirmation.html', context=context)
     else:
         return custom_ordering(request)
+
+def send_confirmation_email(context, order_email):
+        #always send notifying email to the master email
+        subject = f'Order #{context["order"].id} was placed'
+        html_message = render_to_string('email-conf.html', context)
+        plain_message = strip_tags(html_message)
+        to = "store.aactnhs@gmail.com" #consider using constance in the future for a list of "always notify" emails
+        from_email = None #uses DEFAULT_FROM_EMAIL in settings.py
+
+        mail.send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+
+        #if defined, send conf to student's email
+        if order_email:
+            subject = f'Confirmation of order #{context["order"].id}'
+            mail.send_mail(subject, plain_message, from_email, [order_email], html_message=html_message)
+    
 
 class ProductListView(generic.ListView):
     model = Product
