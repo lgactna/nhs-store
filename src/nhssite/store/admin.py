@@ -25,8 +25,8 @@ class ProductInstanceInline(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'last_name', 'first_name', 'created_at', 'is_custom', 'fulfilled', )
-    list_filter = ('created_at', 'updated_at', 'is_custom', 'fulfilled')
+    list_display = ('id', 'last_name', 'first_name', 'created_at', 'is_custom', 'order_status', )
+    list_filter = ('created_at', 'updated_at', 'is_custom', 'order_status')
 
     inlines = [ProductInstanceInline]
 

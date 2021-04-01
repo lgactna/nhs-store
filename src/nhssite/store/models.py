@@ -26,6 +26,14 @@ class Product(models.Model):
     materials = models.ManyToManyField("Material", related_name="materials")
     available = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
+
+    unit_price_multiplier = models.DecimalField(
+        max_digits=4,
+        decimal_places=3,
+        help_text="Enter the additional markup multiplier across all materials for this product.",
+        default=1.000
+    )
+
     
     def get_absolute_url(self):
         """Returns the url for this player."""
@@ -70,7 +78,14 @@ class Material(models.Model):
         max_length=20,
         help_text="Actual 3D print material (ABS, PLA, resin, etc.)")
     available = models.BooleanField(default=True)
-    #consider using unit prices in future
+
+    unit_price = models.DecimalField(
+        max_digits=4,
+        decimal_places=3,
+        help_text="Price per gram (ppg) of the material. Either pre- or post-markup can be used here, but be consistent.",
+        verbose_name="Price per gram",
+        default=0.01,
+    )
 
     def __str__(self):
         """String for representing the Model object.
@@ -106,8 +121,21 @@ class Order(models.Model):
     phone = models.CharField(max_length=15) #you will provide number or perish
     special_instructions = models.TextField(default="", blank=True, null=True)
     extra_notes = models.TextField(default="", blank=True, null=True)
-    paid = models.BooleanField(default=False)
-    fulfilled = models.BooleanField(default=False)
+
+    #for custom orders, flow is O NQ QS P I...
+    #for normal orders, flow is O P I...
+    STATUSES = [
+        ("O", "Ordered"), 
+        ("NQ", "Needs Quote"),
+        ("QS", "Quote Sent"),
+        ("P", "Paid"),
+        ("I", "In Progress"),
+        ("R", "Ready For Pickup"),
+        ("F", "Fulfilled"),
+        ("C", "Cancelled"),
+    ]
+
+    order_status = models.CharField(max_length=2, default="O", choices=STATUSES)
 
     is_custom = models.BooleanField(default=False)
     custom_links = models.TextField(default="", blank=True, null=True)
