@@ -117,7 +117,7 @@ class Order(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     student_id = models.CharField(max_length=10)
-    email = models.EmailField(blank=True, null=True)
+    email = models.EmailField()
     phone = models.CharField(max_length=15) #you will provide number or perish
     special_instructions = models.TextField(default="", blank=True, null=True)
     extra_notes = models.TextField(default="", blank=True, null=True)
