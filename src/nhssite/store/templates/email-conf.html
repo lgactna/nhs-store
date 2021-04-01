@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    </head>
+<body>
+    <main class="page landing-page">
+        <section class="portfolio-block" style="padding-top: 35px;">
+            <div class="container">
+                <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
+                    <h2>CONFIRMATION</h2>
+                    <p>Your order has been received!</p>
+                    <p>Please print this page out for your records. <strong>Save your order number!</strong></p>
+                </div>
+            </div>
+            <div class="container">
+                <div>
+                    <h4>Details</h4>
+                    <div class="table-responsive" style="width: 600px;">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 200px;"><strong>Order Number</strong></td>
+                                    <td>{{order.id}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>First Name</strong></td>
+                                    <td>{{order.first_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Last Name</strong></td>
+                                    <td>{{order.last_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Student ID</strong></td>
+                                    <td>{{order.student_id}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email</strong></td>
+                                    <td>{{order.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone</strong></td>
+                                    <td>{{order.phone}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h4>Special Instructions</h4>
+                    {% if order.special_instructions %}
+                    <p>{{order.special_instructions}}</p>
+                    {% else %}
+                    <p>None.</p>
+                    {% endif %}
+                </div>
+                {% if order.is_custom %}
+                <div>
+                    <h4>Links to files</h4>
+                    <p>{{order.custom_links}}</p>
+                </div>
+                <div>
+                    <h4>Custom order details</h4>
+                    <div class="table-responsive" style="width: 600px;">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    
+                                    <td><strong>Material</strong></td>
+                                    {% if order.custom_material %}
+                                    <td>{{order.custom_material}}</td>
+                                    {% else %}
+                                    <td>See special instructions</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <td><strong>Quantity</strong></td>
+                                    {% if order.custom_quantity != 0 %}
+                                    <td>{{order.custom_quantity}}</td>
+                                    {% else %}
+                                    <td>See special instructions</td>
+                                    {% endif %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% else %}
+                <div>
+                    <h4>Order Summary</h4>
+                    <div class="table-responsive" overflow="auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 250px;">Item</th>
+                                    <th style="width: 185px;">Material</th>
+                                    <th style="width: 120px;">Quantity</th>
+                                    <th style="width: 84px;">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cart_item in cart_contents %}
+                                <tr>
+                                    <td>{{cart_item.product}}</td>
+                                    <td>{{cart_item.material}}</td>
+                                    <td>{{cart_item.quantity}}</td>
+                                    <td>${{ cart_item.item_cost|stringformat:".2f" }}</td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td style="text-align: right;"><br></td>
+                                    <td class="d-flex justify-content-end"><strong>Grand Total</strong></td>
+                                    <td><strong>{{total_quantity}}</strong></td>
+                                    <td><strong>${{total_cost|stringformat:".2f"}}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>

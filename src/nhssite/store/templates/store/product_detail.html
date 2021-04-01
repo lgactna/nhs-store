@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block main %}
-    <section class="clean-block clean-product dark" style="margin-top: 40px;">
+    <section class="clean-block clean-product dark" style="margin: 40px 0;">
         <div class="container">
             <div class="block-content">
                 <div class="product-info">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column" style="border-radius: 16px;border-width: 1px;border-style: solid;"><span style="font-size: 28px;color: var(--blue);" id="total-price">${{product.price|stringformat:".2f"}}</span><span>Unit price: ${{product.price|stringformat:".2f"}} each</span>
+                        <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column" style="border-radius: 30px;border-width: 1px;border-style: solid;"><span style="font-size: 28px;color: var(--blue);" id="total-price">${{product.price|stringformat:".2f"}}</span><span>Unit price: ${{product.price|stringformat:".2f"}} each</span>
                             <form style="margin-top: 10px;" method="post" action="{% url 'cart' %}">
                                 {% csrf_token %}
                                 <div class="form-group d-flex align-items-center"><span>Material</span><select name="material" class="form-control" style="width: 160px;margin-left: 15px;">

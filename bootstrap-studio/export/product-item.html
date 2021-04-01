@@ -5,16 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Modelling - lgactna</title>
+    <meta property="og:description" content="{{page name}} | The online store of the AACT NHS chapter.">
+    <meta property="og:title" content="{{page name}}">
+    <meta name="twitter:description" content="{{Page name}} | The online store of the AACT NHS chapter.">
     <meta name="twitter:card" content="summary">
-    <meta property="og:description" content="Lloyd Gonzales">
-    <meta property="og:image" content="assets/img/github-profile.png">
+    <meta name="twitter:image" content="homepage-assets/resume-final-with-links.png">
     <meta property="og:type" content="website">
-    <meta name="description" content="Portfolio of Lloyd Gonzales.">
-    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
-    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
-    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
-    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
-    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <meta name="description" content="The online store of the AACT NHS chapter.">
+    <meta name="twitter:title" content="{{Page name}}">
+    <meta property="og:image" content="homepage-assets/resume-final-with-links.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
@@ -32,7 +31,7 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
-        <div class="container"><a class="navbar-brand logo" href="{% url 'index' %}">miller's r us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand d-flex logo" href="{% url 'index' %}" style="padding: 4px 0px;"><img src="assets/img/homepage-assets/cube.png" style="height: 53px;margin-bottom: -30px;margin-top: -11px;margin-right: 12px;">Miller's R Us</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
@@ -44,7 +43,7 @@
         </div>
     </nav>
     <main class="page projects-page">
-        <section class="clean-block clean-product dark" style="margin-top: 40px;">
+        <section class="clean-block clean-product dark" style="margin: 40px 0;">
             <div class="container">
                 <div class="block-content">
                     <div class="product-info">
@@ -78,16 +77,51 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column" style="border-radius: 16px;border-width: 1px;border-style: solid;"><span id="total-price" style="font-size: 28px;color: var(--blue);">$4.00</span><span>Unit price: $4.00 each</span>
+                            <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column" style="border-radius: 30px;border-width: 1px;border-style: solid;"><span id="total-price" style="font-size: 28px;color: var(--blue);">$4.00</span><span>Unit price: $4.00 each</span>
                                 <form style="margin-top: 10px;" method="post" action="{% url 'cart' %}">
                                     <div class="form-group d-flex align-items-center"><span>Material</span><select class="form-control" name="material" style="width: 160px;margin-left: 15px;">
     {% for material in product.materials.all %}
     <option value="{{material.id}}">{{material}}</option>
     {% endfor %}
 </select></div>
-                                    <div class="form-group d-flex align-items-center"><span>Quantity</span><input class="form-control" type="number" value="1" style="width: 60px;margin-left: 15px;" name="quantity"></div>
+                                    <div class="form-group d-flex align-items-center"><span>Quantity</span><input class="form-control" type="number" value="1" style="width: 60px;margin-left: 15px;" name="quantity" min="1"></div>
                                     <div class="form-group d-flex align-items-center"><button class="btn btn-primary" id="cartAddButton" type="button"><i class="icon-basket"></i>Add to Cart</button></div><input class="form-control" type="hidden" name="product_id" value="{{ product.id }}">
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 40px;">
+                    <ul class="nav nav-tabs" role="tablist" id="myTab">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-toggle="tab" id="specifications-tabs" href="#specifications">Technical Details</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" id="description-tab" href="#description">Additional Information</a></li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show description" role="tabpanel" id="description">
+                            <p>None provided.</p>
+                        </div>
+                        <div class="tab-pane active fade show specifications" role="tabpanel" id="specifications">
+                            <div class="table-responsive table-bordered">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td class="stat">Mass</td>
+                                            <td>--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="stat">Price per gram</td>
+                                            <td>--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="stat">Failure rate</td>
+                                            <td>--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="stat">Complexity</td>
+                                            <td>--</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -97,9 +131,16 @@
     </main>
     <footer class="page-footer">
         <div class="container">
-            <p><strong>contact us!</strong></p>
+            <p><strong>Contact us!</strong></p>
+            <div class="col d-flex flex-column justify-content-center" style="margin-bottom: 34px;"><span><strong>For store-related inquires:</strong></span><span></span><a href="mailto:store.aactnhs@gmail.com" style="font-size: 16px;">store.aactnhs@gmail.com</a></div>
+            <div style="margin-bottom: 5px;"><span>For information on AACT's NHS chapter:</span></div>
+            <div class="row">
+                <div class="col d-flex flex-column justify-content-center"><span><strong>Marc Miller</strong></span><span>NHS Advisor</span><a href="mailto:MaMiller@washoeschools.net" style="font-size: 16px;">mamiller@washoeschools.net</a></div>
+                <div class="col d-flex flex-column justify-content-center"><span><strong>Emma Speicher</strong></span><span>President</span><a href="mailto:emmaspeicher1@gmail.com" style="font-size: 16px;">emmaspeicher1@gmail.com</a></div>
+                <div class="col d-flex flex-column justify-content-center"><span><strong>Lloyd Gonzales</strong></span><span>Treasurer</span><a href="mailto:lgonzalesna@gmail.com" style="font-size: 16px;">lgonzalesna@gmail.com</a></div>
+            </div>
+            <div style="margin-top: 23px;"><span class="text-muted">source available&nbsp;<a class="text-muted" href="#" style="margin: 0;font-size: 16px;">here</a></span></div>
         </div>
-        <p>insert emma's/miller's info here</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>

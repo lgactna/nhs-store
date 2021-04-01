@@ -5,16 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Modelling - lgactna</title>
+    <meta property="og:description" content="{{page name}} | The online store of the AACT NHS chapter.">
+    <meta property="og:title" content="{{page name}}">
+    <meta name="twitter:description" content="{{Page name}} | The online store of the AACT NHS chapter.">
     <meta name="twitter:card" content="summary">
-    <meta property="og:description" content="Lloyd Gonzales">
-    <meta property="og:image" content="assets/img/github-profile.png">
+    <meta name="twitter:image" content="homepage-assets/resume-final-with-links.png">
     <meta property="og:type" content="website">
-    <meta name="description" content="Portfolio of Lloyd Gonzales.">
-    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
-    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
-    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
-    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
-    <link rel="icon" type="image/png" sizes="420x420" href="assets/img/github-profile.png">
+    <meta name="description" content="The online store of the AACT NHS chapter.">
+    <meta name="twitter:title" content="{{Page name}}">
+    <meta property="og:image" content="homepage-assets/resume-final-with-links.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
@@ -36,17 +35,32 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Order Listing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="catalog.html">Order Lookup</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="catalog.html">Product Management</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <main class="page projects-page">
-        <section class="portfolio-block" style="padding-top: 35px;">
+        <section style="padding-top: 35px;">
             <div class="container">
                 <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
-                    <h2>order listing</h2>
+                    <h2>Order Listing</h2>
                 </div>
+                <form>
+                    <h3>Filters</h3>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group"><span>Include orders <strong>placed</strong>&nbsp;from:</span><input class="form-control" type="date" name="date-from"></div>
+                            <div class="form-group"><span>to:</span><input class="form-control" type="date" name="date-to"></div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group"><span>By order status:</span></div>
+                            <div class="form-group">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Label</label></div>
+                            </div>
+                        </div>
+                    </div><button class="btn btn-primary" type="submit">Set filters</button>
+                </form>
             </div>
         </section>
     </main>

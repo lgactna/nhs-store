@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Modelling - lgactna</title>
+    <meta property="og:description" content="{{page name}} | The online store of the AACT NHS chapter.">
+    <meta property="og:title" content="{{page name}}">
+    <meta name="twitter:description" content="{{Page name}} | The online store of the AACT NHS chapter.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="homepage-assets/resume-final-with-links.png">
+    <meta property="og:type" content="website">
+    <meta name="description" content="The online store of the AACT NHS chapter.">
+    <meta name="twitter:title" content="{{Page name}}">
+    <meta property="og:image" content="homepage-assets/resume-final-with-links.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/custom-fixes.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(120deg,#4052f4,#0ea0ff);">
+        <div class="container"><a class="navbar-brand logo" href="{% url 'index' %}">miller's r us</a></div>
+    </nav>
+    <main class="page projects-page">
+        <section class="portfolio-block" style="padding-top: 35px;">
+            <div class="container">
+                <div class="d-flex flex-column align-items-center heading" style="margin-bottom: 30px;">
+                    <h2>CONFIRMATION</h2>
+                    <p>Your order has been received!</p>
+                    <p>Please print this page out for your records.</p>
+                </div>
+            </div>
+            <div class="container">
+                <div>
+                    <h4>Details</h4>
+                    <div class="table-responsive" style="width: 600px;">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 200px;"><strong>Order Number</strong></td>
+                                    <td>{{order number}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>First Name</strong></td>
+                                    <td>{{first name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Last Name</strong></td>
+                                    <td>{{last name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Student ID</strong></td>
+                                    <td>{{id}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email</strong></td>
+                                    <td>{{email}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone</strong></td>
+                                    <td>{{phone}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h4>Special Instructions</h4>
+                    <p>{{special instructions}}</p>
+                </div>
+                <div>
+                    <h4>Order Summary</h4>
+                    <div class="table-responsive" overflow="auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 250px;">Item</th>
+                                    <th style="width: 185px;">Material</th>
+                                    <th style="width: 120px;">Quantity</th>
+                                    <th style="width: 84px;">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{item name}}</td>
+                                    <td>{{material}}</td>
+                                    <td>{{quantity}}</td>
+                                    <td>${{price}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;"><br></td>
+                                    <td class="d-flex justify-content-end"><strong>Grand Total</strong></td>
+                                    <td><strong>{{gt_quantity]}</strong></td><td><strong>${{tprice}}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <p><strong>contact us!</strong></p>
+        </div>
+        <p>insert emma's/miller's info here</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/dynamicpricing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="assets/js/Simple-Slider.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>
