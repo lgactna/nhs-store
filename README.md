@@ -13,6 +13,6 @@ It is currently available at [aact-nhs.herokuapp.com](aact-nhs.herokuapp.com/) a
 
 ## Setup
 - Run `pip install -r requirements.txt`
-- Rename `template.env` to `.env` and fill in envvars as needed. You may want to disable certain features or libraries, such as Azure or Sentry integrations.
+- Rename `template.env` to `.env` and fill in envvars as needed. You may want to disable certain features or libraries, such as Azure or Sentry integrations, by clearing relevant lines in settings.py.
 - From `\src\nhssite`, run `python manage.py migrate`.
 - Run `python manage.py runserver`.
